@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linkonomy | 한가한 시간도 매출이 됩니다</title>
+
+  <style>
+    /* =====================
+       Reset & Base
+    ====================== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      color: #111;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* =====================
+       Hero
+    ====================== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      position: relative;
+      background: #fff;
+    }
+
+    .hero-inner {
+      max-width: 960px;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .hero-title {
+      font-size: 52px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .hero-title span { color: #D71920; }
+
+    .hero-subtitle {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 0.35s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    .btn {
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn.primary { background: #D71920; color: #fff; }
+    .btn.primary:hover { background: #b9151b; }
+    .btn.outline { border: 1px solid #ddd; }
+    .btn.outline:hover { background: #f5f5f5; }
+
+    .hero.scroll-out .hero-inner {
+      transform: scale(0.96);
+      opacity: 0.4;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #aaa;
+      animation: bounce 1.6s infinite;
+    }
+
+    /* =====================
+       Service
+    ====================== */
+    .service {
+      min-height: 100vh;
+      background: #fafafa;
+      padding: 120px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .service-inner {
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.6s ease;
+    }
+
+    .service.show .service-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 32px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    /* =====================
+       Why
+    ====================== */
+    .why {
+      padding: 140px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .why-inner {
+      max-width: 1100px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .why-box {
+      padding: 40px;
+      border-radius: 16px;
+      text-align: left;
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    .problem {
+      background: #f8f8f8;
+      transform: translateX(-60px);
+    }
+
+    .solution {
+      background: #fff5f5;
+      border: 1px solid #ffe1e1;
+      transform: translateX(60px);
+    }
+
+    .solution h4 { color: #D71920; }
+
+    .why.show .problem,
+    .why.show .solution {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* =====================
+       Technology
+    ====================== */
+    .tech {
+      padding: 140px 24px;
+      background: #fafafa;
+    }
+
+    .tech-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.6s ease;
+    }
+
+    .tech.show .tech-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tech-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 60px;
+      text-align: left;
+    }
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.tech-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+.tech-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #D71920;
+  margin-bottom: 12px;
+}
+
+    /* =====================
+       Roadmap
+    ====================== */
+    .roadmap {
+      padding: 140px 24px;
+    }
+
+    .roadmap-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.6s ease;
+    }
+
+    .roadmap.show .roadmap-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .roadmap-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .step {
+      padding: 32px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: #D71920;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 80px;
+  position: relative;
+}
+
+.timeline-step {
+  text-align: center;
+  padding: 12px;
+}
+
+.timeline-step .dot {
+  width: 18px;
+  height: 18px;
+  background: #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.timeline-step.active .dot {
+  background: #D71920;
+}
+
+.timeline-step h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+    /* =====================
+       CTA
+    ====================== */
+    .cta {
+      padding: 120px 24px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(80px);
+      transition: all 0.6s ease;
+    }
+
+    .cta.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =====================
+       Footer
+    ====================== */
+    .footer {
+      padding: 48px 24px;
+      background: #f5f5f5;
+      border-top: 1px solid #eee;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      margin-right: 16px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* =====================
+       Animations
+    ====================== */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translate(-50%,0); }
+      50% { transform: translate(-50%,6px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 36px; }
+      .service-cards,
+      .tech-list,
+      .roadmap-steps,
+      .why-grid { grid-template-columns: 1fr; }
+      .problem, .solution { transform: translateY(40px); }
+      .why.show .problem, .why.show .solution { transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">한가한 시간도 <span>매출</span>이 됩니다</h1>
+    <h2 class="hero-subtitle">남는 시간을 매출로 바꾸는<br>시간 기반 딜 커머스 플랫폼</h2>
+    <p class="hero-desc">상점의 유휴 시간을 기회로 만들고<br>AI 기술로 운영은 더 단순하게 만듭니다</p>
+    <div class="hero-cta">
+      <a href="#service" class="btn primary">서비스 알아보기</a>
+      <a href="#contact" class="btn outline">제휴 문의</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">scroll ↓</div>
+</section>
+
+<!-- Service -->
+<section class="service" id="service">
+  <div class="service-inner">
+    <h3>우리가 하는 일</h3>
+    <p>시간 · 사람 · AI를 연결합니다</p>
+    <div class="service-cards">
+      <div class="card"><h4>Time Dealing</h4><p>시간 기반 커머스 플랫폼</p></div>
+      <div class="card"><h4>AI 챗봇</h4><p>자체 개발 운영 자동화</p></div>
+      <div class="card"><h4>AI 서비스 확장</h4><p>지속적인 AI 기능 출시</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="why">
+  <div class="why-inner">
+    <h3>왜 Linkonomy인가</h3>
+    <p>로컬 커머스의 구조를 재 설계합니다</p>
+    <div class="why-grid">
+      <div class="why-box problem">
+        <h4>기존 로컬 커머스의 문제</h4><br>
+        <ul>
+          <li>과도한 수수료 구조</li>
+          <li>일방적인 할인 및 프로모션</li>
+          <li>상위 노출을 위한 비용 발생</li>
+        </ul>
+      </div>
+      <div class="why-box solution">
+        <h4>Linkonomy의 방식</h4><br>
+        <ul>
+          <li>합리적인 수수료</li>
+          <li>자율적 가격 정책</li>
+          <li>사용자 위치 기반 우선 노출</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technology -->
+<section class="tech">
+  <div class="tech-inner">
+    <h3 class="section-title">기술 & 강점</h3>
+    <p class="section-desc">
+      실제 서비스 운영을 통해 검증된 기술로<br />
+      플랫폼과 AI를 함께 고도화합니다
+    </p>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <span class="tech-tag">LBS</span>
+        <h4>위치기반 서비스 중심</h4>
+        <p>
+          사용자 위치 기준으로 인근 타임딜 자동 노출<br />
+          상권·거리·접근성 고려 실사용 중심 구조
+        </p>
+      </div>
+
+      <div class="tech-card">
+        <span class="tech-tag">TIME</span>
+        <h4>시간 단위 딜 운영</h4>
+        <p>
+          특정 시간·수량에 따라 유연한 딜 운영<br />
+          한가한 시간대를 매출로 전환
+        </p>
+      </div>
+
+      <div class="tech-card">
+        <span class="tech-tag">AI</span>
+        <h4>확장 전제의 AI 구조</h4>
+        <p>
+          현재는 챗봇 중심으로 AI를 활용<br />
+          매출·수요 인사이트로 확장 예정
+        </p>
+      </div>
+
+      <div class="tech-card">
+        <span class="tech-tag">DATA</span>
+        <h4>플랫폼 + AI 연계 설계</h4>
+        <p>
+          서비스 운영 데이터 축적<br />
+          AI 활용 범위를 점진적 확대
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section class="roadmap">
+  <div class="roadmap-inner">
+    <h3 class="section-title">서비스 로드맵</h3>
+    <p class="section-desc">
+      지금 검증하고, 다음을 만들며, 미래로 확장합니다
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-step active">
+        <span class="dot"></span>
+        <h4>Now</h4>
+        <p>
+          한가한 시간을 매출로 만드는<br />
+          타임딜링 서비스 운영
+        </p>
+      </div>
+
+      <div class="timeline-step">
+        <span class="dot"></span>
+        <h4>Next</h4>
+        <p>
+          AI 기반 상점 운영·매출<br />
+          인사이트 제공
+        </p>
+      </div>
+
+      <div class="timeline-step">
+        <span class="dot"></span>
+        <h4>Future</h4>
+        <p>
+          AI가 움직이는<br />
+          로컬 커머스 생태계
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h3>지금, 연결을 시작하세요</h3>
+  <p>상점과 고객을 잇는 새로운 경제</p><br>
+  <a class="btn primary">제휴 문의하기</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>주식회사 링코노미 (Linkonomy Inc.)</strong>
+      <p>© 2026 Linkonomy Inc.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/terms.html">이용약관</a>
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="/refund.html">환불약관</a>
+      <a href="/location.html">위치기반 서비스 약관</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const service = document.querySelector('.service');
+  const why = document.querySelector('.why');
+  const tech = document.querySelector('.tech');
+  const roadmap = document.querySelector('.roadmap');
+  const cta = document.querySelector('.cta');
+
+  window.addEventListener('scroll', () => {
+    const h = window.innerHeight;
+
+    hero.classList.toggle('scroll-out', window.scrollY > h * 0.6);
+    service.classList.toggle('show', service.getBoundingClientRect().top < h * 0.75);
+    why.classList.toggle('show', why.getBoundingClientRect().top < h * 0.75);
+    tech.classList.toggle('show', tech.getBoundingClientRect().top < h * 0.75);
+    roadmap.classList.toggle('show', roadmap.getBoundingClientRect().top < h * 0.75);
+    cta.classList.toggle('show', cta.getBoundingClientRect().top < h * 0.8);
+  });
+</script>
+
+</body>
+</html>
