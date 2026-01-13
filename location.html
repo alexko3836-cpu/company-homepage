@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>위치기반서비스 이용약관</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text-main: #111111;
+      --text-sub: #666666;
+      --border: #eaeaea;
+      --primary: #D71920;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 12px;
+      height: 36px;
+      width: 36px;
+      border-radius: 10px;
+      border: none;
+      background: #f5f5f5;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .back-button:active {
+      background: #eaeaea;
+    }
+
+    .header-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* ===== Content ===== */
+    .container {
+      padding: 20px 18px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin: 28px 0 10px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0 0 10px;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 8px 0 14px;
+    }
+
+    li {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .manager-box {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .manager-box strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    @media (min-width: 768px) {
+      h2 { font-size: 17px; }
+      p, li { font-size: 15px; }
+    }
+  </style>
+
+  <script>
+    function goBackSmart() {
+      /**
+       * 조건부 뒤로가기
+       * 1) 이전 페이지(referrer)가 있으면 history.back()
+       * 2) 없으면 index.html로 이동
+       *
+       * iOS WebView / Android WebView / PC 브라우저 안전
+       */
+      if (document.referrer && document.referrer !== location.href) {
+        history.back();
+      } else {
+        location.href = 'index.html';
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" onclick="goBackSmart()">←</button>
+    <div class="header-title">위치기반서비스 이용약관</div>
+  </header>
+
+  <!-- Content -->
+  <main class="container">
+    <h2>제1조 (목적)</h2>
+    <p>
+      본 약관은 주식회사 링코노미(이하 “회사”)가 운영하는 ‘타임딜링’ 플랫폼(이하 “플랫폼”)에서 제공하는
+      위치기반서비스와 관련하여 회사와 이용자 간의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+    </p>
+
+    <h2>제2조 (정의)</h2>
+    <p>① “위치정보”란 이동성이 있는 단말기 또는 스마트기기에서 수집되는 GPS, Wi-Fi, 기지국, IP 주소 등을 통해 확인되는 위치 좌표 정보를 말합니다.</p>
+    <p>② “개인위치정보”란 특정 개인의 위치를 식별할 수 있는 위치정보를 말합니다.</p>
+    <p>③ “위치기반서비스”란 개인위치정보를 이용하여 제공되는 주변 딜 추천, 인근 매장 안내, 예약 매장 위치 표시, 거리 계산 등의 서비스를 말합니다.</p>
+    <p>④ “이용자”란 본 약관에 동의하고 위치기반서비스를 이용하는 회원을 말합니다.</p>
+
+    <h2>제3조 (약관의 효력 및 변경)</h2>
+    <p>① 본 약관은 이용자가 위치기반서비스 이용에 동의함으로써 효력이 발생합니다.</p>
+    <p>② 회사는 관련 법령의 개정 또는 서비스 변경에 따라 본 약관을 개정할 수 있으며, 개정 시 최소 7일 이전에 앱 내 공지 또는 개별 통지를 통해 안내합니다.</p>
+    <p>③ 이용자가 개정 약관에 동의하지 않을 경우, 위치기반서비스 이용을 중단하거나 회원 탈퇴를 요청할 수 있습니다.</p>
+
+    <h2>제4조 (개인위치정보의 수집·이용 목적)</h2>
+    <ul>
+      <li>이용자 주변 딜 및 매장 자동 추천</li>
+      <li>예약 매장의 위치 표시 및 길 안내</li>
+      <li>이용자와 매장 간 거리 계산</li>
+      <li>위치 기반 맞춤형 서비스 제공</li>
+    </ul>
+
+    <h2>제5조 (개인위치정보의 수집 방법 및 동의)</h2>
+    <p>① 회사는 이용자의 명시적 동의가 있는 경우에만 개인위치정보를 수집합니다.</p>
+    <p>② 이용자는 앱 설정을 통해 위치정보 수집에 대한 동의를 언제든지 철회할 수 있습니다.</p>
+
+    <h2>제6조 (개인위치정보의 보유 및 이용기간)</h2>
+    <p>① 회사는 개인위치정보를 실시간 또는 일시적으로만 처리하며, 서비스 제공 목적 달성 후 즉시 파기합니다.</p>
+    <p>② 단, 위치정보 수집·이용 사실 확인자료는 관련 법령에 따라 6개월간 보관합니다.</p>
+    <p>③ 통계·분석 목적의 데이터는 개인을 식별할 수 없도록 익명화하여 활용할 수 있습니다.</p>
+
+    <h2>제7조 (개인위치정보의 제3자 제공 및 위탁)</h2>
+    <p>① 회사는 개인위치정보를 제3자에게 제공하지 않습니다.</p>
+    <p>② 다만, 지도 API, 서버 운영, 알림 발송 등 일부 업무를 외부 업체에 위탁할 수 있으며, 이 경우 위탁 목적·범위·수탁자를 사전에 고지합니다.</p>
+    <p>③ 회사는 광고 또는 마케팅 목적으로 개인위치정보를 이용하지 않습니다.</p>
+
+    <h2>제8조 (이용자의 권리)</h2>
+    <p>① 이용자는 언제든지 개인위치정보 수집·이용에 대한 동의를 철회할 수 있습니다.</p>
+    <p>② 이용자는 자신의 개인위치정보에 대해 열람, 정정, 삭제를 요청할 수 있습니다.</p>
+    <p>③ 회사는 이용자의 요청이 있는 경우 지체 없이 필요한 조치를 취합니다.</p>
+
+    <h2>제9조 (서비스의 변경 및 중단)</h2>
+    <p>① 회사는 서비스 개선 또는 운영상 필요에 따라 위치기반서비스의 일부 또는 전부를 변경하거나 중단할 수 있습니다.</p>
+    <p>② 불가항력적인 사유로 인한 서비스 중단에 대해서는 회사의 책임을 제한합니다.</p>
+
+    <h2>제10조 (개인위치정보관리책임자)</h2>
+    <div class="manager-box">
+      <strong>개인위치정보관리책임자</strong>
+      성명: 고영권<br />
+      직책: CPO<br />
+      이메일: admin@timedealing.com
+    </div>
+
+    <h2>제11조 (손해배상)</h2>
+    <p>① 회사의 고의 또는 중대한 과실로 손해가 발생한 경우, 관련 법령에 따라 손해배상을 청구할 수 있습니다.</p>
+    <p>② 회사의 통제 범위를 벗어난 사유로 발생한 손해에 대해서는 책임을 지지 않습니다.</p>
+
+    <h2>제12조 (분쟁 해결 및 관할법원)</h2>
+    <p>① 회사와 이용자 간 분쟁은 성실히 협의하여 해결합니다.</p>
+    <p>② 협의가 이루어지지 않을 경우, 민사소송법상 관할법원을 제1심 법원으로 합니다.</p>
+  </main>
+</body>
+</html>
