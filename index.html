@@ -412,6 +412,15 @@
   min-height: 120px;
   resize: vertical;
 }
+
+.btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn.loading {
+  background: #999;
+}   
   </style>
 </head>
 
@@ -571,7 +580,12 @@
     <input type="text" name="phone" placeholder="연락처 (선택)" />
     <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
 
-    <button type="submit" class="btn primary">제휴 문의 보내기</button>
+    <button type="submit" class="btn primary" id="submitBtn" disabled>
+      <span id="btnText">제휴 문의 보내기</span>
+      <span id="btnCheck" style="display:none;margin-left:6px;">✔</span>
+    </button>
+
+<p id="formStatus" style="margin-top:12px;font-size:14px;"></p>
     <p id="formStatus" style="margin-top:12px;font-size:14px;"></p>
   </form>
 
@@ -594,26 +608,7 @@
 </footer>
 
 <script>
-  const hero = document.querySelector('.hero');
-  const service = document.querySelector('.service');
-  const why = document.querySelector('.why');
-  const tech = document.querySelector('.tech');
-  const roadmap = document.querySelector('.roadmap');
-  const cta = document.querySelector('.cta');
-
-  window.addEventListener('scroll', () => {
-    const h = window.innerHeight;
-
-    hero.classList.toggle('scroll-out', window.scrollY > h * 0.6);
-    service.classList.toggle('show', service.getBoundingClientRect().top < h * 0.75);
-    why.classList.toggle('show', why.getBoundingClientRect().top < h * 0.75);
-    tech.classList.toggle('show', tech.getBoundingClientRect().top < h * 0.75);
-    roadmap.classList.toggle('show', roadmap.getBoundingClientRect().top < h * 0.75);
-    cta.classList.toggle('show', cta.getBoundingClientRect().top < h * 0.8);
-  });
-</script>
-<script>
-  // ===== 기존 스크롤 코드 =====
+  // ===== 스크롤 애니메이션 =====
   const hero = document.querySelector('.hero');
   const service = document.querySelector('.service');
   const why = document.querySelector('.why');
@@ -632,13 +627,34 @@
     cta.classList.toggle('show', cta.getBoundingClientRect().top < h * 0.8);
   });
 
-  // ===== 여기부터 추가 =====
+  // ===== Contact Form =====
   const form = document.getElementById("contactForm");
   const status = document.getElementById("formStatus");
+  const submitBtn = document.getElementById("submitBtn");
+  const btnText = document.getElementById("btnText");
+  const btnCheck = document.getElementById("btnCheck");
+
+  const requiredFields = ["company", "name", "email", "message"];
+
+  // 입력 상태 체크 → 버튼 활성화
+  function checkFormValid() {
+    const isValid = requiredFields.every(
+      (field) => form[field].value.trim() !== ""
+    );
+    submitBtn.disabled = !isValid;
+  }
+
+  requiredFields.forEach((field) => {
+    form[field].addEventListener("input", checkFormValid);
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    status.textContent = "전송 중입니다...";
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add("loading");
+    btnText.textContent = "전송 중...";
+    status.textContent = "";
 
     const data = {
       company: form.company.value,
@@ -647,7 +663,6 @@
       phone: form.phone.value,
       message: form.message.value,
     };
-
 
     try {
       const res = await fetch("https://contact-api.alexko3836.workers.dev", {
@@ -658,15 +673,23 @@
 
       if (!res.ok) throw new Error();
 
+      // ✅ 성공 처리
+      btnText.textContent = "전송 완료";
+      btnCheck.style.display = "inline";
       status.textContent = "문의가 성공적으로 전송되었습니다.";
       form.reset();
     } catch {
-      status.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해주세요.";
+      // ❌ 실패 처리
+      btnText.textContent = "제휴 문의 보내기";
+      submitBtn.disabled = false;
+      submitBtn.classList.remove("loading");
+      status.textContent = "전송에 실패했습니다. 다시 시도해주세요.";
     }
   });
 </script>
 
 </body>
 </html>
+
 
 
