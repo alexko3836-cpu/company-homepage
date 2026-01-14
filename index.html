@@ -566,12 +566,15 @@
 
   <form id="contactForm" class="contact-form">
     <input type="text" name="company" placeholder="회사명" required />
+    <input type="text" name="name" placeholder="담당자명" required />
     <input type="email" name="email" placeholder="이메일" required />
+    <input type="text" name="phone" placeholder="연락처 (선택)" />
     <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
 
     <button type="submit" class="btn primary">제휴 문의 보내기</button>
     <p id="formStatus" style="margin-top:12px;font-size:14px;"></p>
   </form>
+
 </section>
 
 <!-- Footer -->
@@ -639,9 +642,12 @@
 
     const data = {
       company: form.company.value,
+      name: form.name.value,
       email: form.email.value,
+      phone: form.phone.value,
       message: form.message.value,
     };
+
 
     try {
       const res = await fetch("https://contact-api.alexko3836.workers.dev", {
@@ -662,4 +668,5 @@
 
 </body>
 </html>
+
 
