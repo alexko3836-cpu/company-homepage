@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>서비스 이용약관</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text-main: #111111;
+      --text-sub: #666666;
+      --border: #eaeaea;
+      --primary: #D71920;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 12px;
+      height: 36px;
+      width: 36px;
+      border-radius: 10px;
+      border: none;
+      background: #f5f5f5;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .back-button:active {
+      background: #eaeaea;
+    }
+
+    .header-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* ===== Content ===== */
+    .container {
+      padding: 20px 18px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin: 28px 0 10px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0 0 10px;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 8px 0 14px;
+    }
+
+    li {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .sub {
+      color: var(--text-sub);
+      font-size: 13px;
+    }
+
+    .box {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      h2 { font-size: 17px; }
+      p, li { font-size: 15px; }
+    }
+  </style>
+
+  <script>
+    function goBackSmart() {
+      if (document.referrer && document.referrer !== location.href) {
+        history.back();
+      } else {
+        location.href = 'index.html';
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" onclick="goBackSmart()">←</button>
+    <div class="header-title">서비스 이용약관</div>
+  </header>
+
+  <!-- Content -->
+  <main class="container">
+    <h2>제1조 (목적)</h2>
+    <p>
+      본 약관은 ‘타임딜링’ 플랫폼(이하 “플랫폼”)을 운영하는 주식회사 링코노미(이하 “회사”)가 제공하는
+      할인 딜 예약 중개 서비스(이하 “서비스”)의 이용조건, 절차 및 회사와 회원 간의
+      권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+    </p>
+
+    <h2>제2조 (정의)</h2>
+    <p>① “회원”이란 본 약관에 동의하고 서비스를 이용하는 자를 말합니다.</p>
+    <p>② “딜”이란 업주가 플랫폼을 통해 회원에게 제공하는 할인권, 이용권 또는 교환권을 의미합니다.</p>
+    <p>③ “예약”이란 회원이 딜을 선택하여 가격을 선결제하고, 특정 시간대에 이용을 신청하는 행위를 말합니다.</p>
+    <p>④ “업주”란 회사와 계약을 체결하고 플랫폼에 딜을 등록·판매하는 사업자를 말합니다.</p>
+    <p>⑤ “회사”란 플랫폼을 운영·관리하며 거래를 중개하는 주체를 의미합니다.</p>
+
+    <h2>제3조 (약관의 효력 및 변경)</h2>
+    <p>① 본 약관은 앱 내 게시되며, 회원이 동의함으로써 효력이 발생합니다.</p>
+    <p>② 회사는 관련 법령 또는 서비스 운영상 필요에 따라 약관을 개정할 수 있으며, 개정 시 최소 7일 전에 공지합니다.</p>
+    <p>③ 회원이 개정 약관 시행일 이후에도 서비스를 계속 이용하는 경우, 개정 약관에 동의한 것으로 봅니다.</p>
+
+    <h2>제4조 (이용계약의 성립)</h2>
+    <p>① 이용계약은 회원이 필수 정보를 입력하고 본 약관 및 개인정보처리방침에 동의함으로써 성립합니다.</p>
+    <p>② 회사는 다음 각 호에 해당하는 경우 가입을 제한할 수 있습니다.</p>
+    <ul>
+      <li>허위 정보 또는 타인 정보 기재</li>
+      <li>만 14세 미만인 경우</li>
+      <li>법령에 따라 서비스 이용이 제한되는 경우</li>
+    </ul>
+
+    <h2>제5조 (서비스 제공 및 중단)</h2>
+    <p>① 회사는 서비스 제공을 위해 합리적인 범위 내에서 최선을 다합니다.</p>
+    <p>② 다음 각 호의 사유가 있는 경우 서비스 제공이 일시 중단될 수 있습니다.</p>
+    <ul>
+      <li>시스템 점검, 교체, 장애</li>
+      <li>천재지변, 통신 장애 등 불가항력</li>
+    </ul>
+    <p>③ 회사는 서비스 중단이 발생한 경우 사전 또는 사후에 이를 공지합니다.</p>
+
+    <h2>제6조 (회원의 의무)</h2>
+    <p>① 회원은 서비스 이용 시 다음 행위를 해서는 안 됩니다.</p>
+    <ul>
+      <li>허위 정보 입력 또는 타인 정보 도용</li>
+      <li>예약의 부정 이용, QR 코드의 부정 사용</li>
+      <li>플랫폼 내 콘텐츠의 무단 복제·배포</li>
+    </ul>
+    <p>② 회원이 예약 후 정당한 사유 없이 서비스를 이용하지 않는 경우(노쇼),
+      회사는 사전에 고지된 환불정책에 따라 위약금 또는 수수료를 부과할 수 있습니다.</p>
+
+    <h2>제7조 (결제 및 환불)</h2>
+    <p>① 회원은 회사가 제공하는 결제 수단을 통해 딜을 선결제합니다.</p>
+    <p>② 취소·환불 및 청약철회에 관한 사항은 관계 법령 및 회사가 별도로 정한 환불정책에 따릅니다.</p>
+    <p>③ 예약 시간 경과, 사용 완료, 노쇼 등 환불 제한 사유는 환불정책에 명시됩니다.</p>
+    <p>④ 환불 처리 시점은 결제 수단별 정책에 따라 영업일 기준 일정 기간이 소요될 수 있습니다.</p>
+
+    <h2>제8조 (게시물의 저작권)</h2>
+    <p>① 회원이 작성한 게시물의 저작권은 회원에게 있습니다.</p>
+    <p>② 회원은 회사에 대해 서비스 운영 및 홍보 목적에 한하여 비독점적 사용권을 부여합니다.</p>
+    <p>③ 회사가 작성한 콘텐츠의 저작권은 회사에 있으며, 무단 사용을 금합니다.</p>
+
+    <h2>제9조 (이용 제한 및 해지)</h2>
+    <p>① 회사는 회원이 본 약관을 위반한 경우 서비스 이용을 제한하거나 계정을 해지할 수 있습니다.</p>
+    <p>② 회원은 언제든지 앱 내 설정을 통해 이용계약을 해지할 수 있으며,
+      미사용 딜은 환불정책에 따라 처리됩니다.</p>
+
+    <h2>제10조 (면책)</h2>
+    <p>① 회사는 천재지변, 통신 장애 등 불가항력으로 인한 서비스 장애에 대해 책임을 지지 않습니다.</p>
+    <p>② 회사는 플랫폼 제공자로서 거래를 중개하며,
+      업주가 제공하는 상품·서비스의 내용 및 이행에 대한 책임은 업주에게 있습니다.
+      단, 회사의 고의 또는 중대한 과실이 있는 경우는 예외로 합니다.</p>
+
+    <h2>제11조 (준거법 및 관할)</h2>
+    <p>① 본 약관은 대한민국 법률을 준거법으로 합니다.</p>
+    <p>② 서비스 이용과 관련한 분쟁은 민사소송법상 관할 법원을 제1심 법원으로 합니다.</p>
+
+    <h2>제12조 (고지 및 문의)</h2>
+    <div class="box">
+      서비스 관련 문의는 앱 내 고객센터 또는<br />
+      이메일 <strong>admin@timedealing.com</strong> 을 통해 접수할 수 있습니다.
+    </div>
+  </main>
+</body>
+</html>
