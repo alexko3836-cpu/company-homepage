@@ -420,6 +420,49 @@
 
 .btn.loading {
   background: #999;
+}
+
+/* =====================
+   Scroll To Top Button
+===================== */
+.scroll-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #D71920;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.scroll-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  background: #b9151b;
+}
+
+@media (max-width: 768px) {
+  .scroll-top {
+    right: 16px;
+    bottom: 16px;
+  }
 }   
   </style>
 </head>
@@ -694,10 +737,29 @@
       status.textContent = "전송에 실패했습니다. 다시 시도해주세요.";
     }
   });
-</script>
 
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > window.innerHeight * 0.6) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+  
+</script>
+<div class="scroll-top" id="scrollTopBtn">↑</div>
 </body>
 </html>
+
 
 
 
