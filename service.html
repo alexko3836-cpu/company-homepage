@@ -818,6 +818,33 @@
   }
 }
 
+/* ===== Idle-Revenue Mobile Fix ===== */
+
+.idle-revenue-wrap{
+  margin-top:40px;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+}
+
+.idle-revenue-svg{
+  width:100%;
+  max-width:1000px;
+}
+
+/* 모바일 전용 보정 */
+@media (max-width:768px){
+
+  .idle-revenue-svg{
+    width:115%;              /* 살짝 키워서 중앙 시각 보정 */
+    transform:translateX(-7%);
+  }
+  .idle-revenue-svg text{
+    font-size:34px;
+    font-weight:600;
+  }
+}
 
   </style>
 </head>
@@ -894,13 +921,13 @@
     </p>
 
     <!-- 🔴 여기 추가 -->
-    <div style="margin-top:40px; overflow:hidden;">
-      <svg class="idle-revenue-svg" viewBox="0 0 1200 260" width="100%">
+    <div class="idle-revenue-wrap">
+      <svg class="idle-revenue-svg" viewBox="0 0 1200 260">
 
         <!-- 왼쪽 제목 (좌석 중앙 기준 정렬) -->
         <text x="350" y="70"
               text-anchor="middle"
-              font-size="22"
+              font-size="26"
               fill="#333">
           유휴시간 (Idle Time)
         </text>
