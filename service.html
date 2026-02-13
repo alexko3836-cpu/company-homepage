@@ -865,7 +865,7 @@
     <!-- 좌측 텍스트 -->
     <div class="hero-left">
       <h1>
-        지역 상권의 <span>시간</span>을<br/>
+        지역 상권의
         <span id="hero-dynamic">새로운 매출 기회로</span>
       </h1>
 
@@ -1140,60 +1140,36 @@
 
 
 <script>
-  const heroSection = document.getElementById("hero-section");
   const heroText = document.getElementById("hero-dynamic");
 
   const heroMessages = [
-    "새로운 매출 기회로",
     "유휴 시간을 수익으로",
-    "시간을 자산으로 전환합니다"
+    "새로운 매출 기회로",
+    "시간을 자산으로 전환"
   ];
 
   let currentIndex = 0;
-  let isAnimating = false;
 
-  function updateHeroTextByScroll() {
-    const rect = heroSection.getBoundingClientRect();
-    const heroHeight = rect.height;
+  function rotateHeroText() {
 
-    // Hero가 화면에서 얼마나 사라졌는지 비율 계산
-    const progress = Math.min(
-      Math.max(-rect.top / heroHeight, 0),
-      1
-    );
+    heroText.classList.add("fade-out");
 
-    let newIndex;
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % heroMessages.length;
+      heroText.textContent = heroMessages[currentIndex];
 
-    if (progress < 0.33) {
-      newIndex = 0;
-    } else if (progress < 0.66) {
-      newIndex = 1;
-    } else {
-      newIndex = 2;
-    }
-
-    if (newIndex !== currentIndex && !isAnimating) {
-      isAnimating = true;
-
-      heroText.classList.add("fade-out");
+      heroText.classList.remove("fade-out");
+      heroText.classList.add("fade-in");
 
       setTimeout(() => {
-        heroText.textContent = heroMessages[newIndex];
-        heroText.classList.remove("fade-out");
-        heroText.classList.add("fade-in");
+        heroText.classList.remove("fade-in");
+      }, 400);
 
-        setTimeout(() => {
-          heroText.classList.remove("fade-in");
-          isAnimating = false;
-        }, 600);
-
-      }, 300);
-
-      currentIndex = newIndex;
-    }
+    }, 50);
   }
 
-  window.addEventListener("scroll", updateHeroTextByScroll);
+  // 3초마다 교체
+  setInterval(rotateHeroText, 3000);
 </script>
 
 <script>
