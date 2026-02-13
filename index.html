@@ -50,7 +50,9 @@
       animation: fadeUp 0.8s ease-out forwards;
     }
 
-    .hero-title span { color: #D71920; }
+    .hero-title .highlight {
+      color: #D71920;
+    }
 
     .hero-subtitle {
       font-size: 22px;
@@ -383,12 +385,21 @@
 
     @media (max-width: 768px) {
       .hero-title { font-size: 36px; }
+      .hero-title .line1,
+        .hero-title .line2 {
+          display: block;
+        }
       .service-cards,
       .tech-list,
       .roadmap-steps,
       .why-grid { grid-template-columns: 1fr; }
       .problem, .solution { transform: translateY(40px); }
       .why.show .problem, .why.show .solution { transform: translateY(0); }
+      .timeline-step p {
+        font-size: 15px;
+        line-height: 1.5;
+        word-break: keep-all;
+      }
     }
     /* =====================
    Contact Form
@@ -554,7 +565,12 @@
 <!-- Hero -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <h1 class="hero-title">한가한 시간도 <span>매출</span>이 됩니다</h1>
+    <h1 class="hero-title">
+      <span class="line1">한가한 시간도</span>
+      <span class="line2">
+        <span class="highlight">매출</span>이 됩니다
+      </span>
+    </h1>
     <h2 class="hero-subtitle">남는 시간을 매출로 바꾸는<br>시간 기반 딜 커머스 플랫폼</h2>
     <p class="hero-desc">상점의 유휴 시간을 기회로 만들고<br>AI 기술로 운영은 더 단순하게 만듭니다</p>
     <div class="hero-cta">
