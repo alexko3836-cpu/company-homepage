@@ -112,6 +112,13 @@
 
   <script>
     function goBackSmart() {
+      /**
+       * 조건부 뒤로가기
+       * 1) 이전 페이지(referrer)가 있으면 history.back()
+       * 2) 없으면 index.html로 이동
+       *
+       * iOS WebView / Android WebView / PC 브라우저 안전
+       */
       if (document.referrer && document.referrer !== location.href) {
         history.back();
       } else {
@@ -211,3 +218,4 @@
   </main>
 </body>
 </html>
+
