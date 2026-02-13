@@ -113,10 +113,12 @@
 
   <script>
     function goBackSmart() {
-      if (document.referrer && document.referrer !== location.href) {
-        history.back();
+      // 브라우저 히스토리가 2개 이상이면 이전 페이지로
+      if (window.history.length > 1) {
+        window.history.back();
       } else {
-        location.href = 'index.html';
+        // 없으면 메인으로 강제 이동
+        window.location.replace("index.html");
       }
     }
   </script>
@@ -174,3 +176,4 @@
   </main>
 </body>
 </html>
+
