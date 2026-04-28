@@ -3,546 +3,1090 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linkonomy | 한가한 시간도 매출이 됩니다</title>
+  <title>Linkonomy | 비어있는 시간을 매출로 바꾸세요</title>
 
   <style>
-    /* =====================
-       Reset & Base
-    ====================== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior:smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      color: #111;
-      background: #fff;
-      line-height: 1.6;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      color:#111;
+      background:#fff;
+      line-height:1.6;
+      word-break:keep-all;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a { color:inherit; text-decoration:none; }
+    ul { list-style:none; }
+
+    :root {
+      --red:#D71920;
+      --dark:#111;
+      --gray:#666;
+      --light:#f7f7f7;
+      --line:#e8e8e8;
+    }
+
+    /* =====================
+       GNB
+    ====================== */
+    .gnb {
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:72px;
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(0,0,0,0.05);
+      z-index:1000;
+      transition:all .3s ease;
+    }
+
+    .gnb.scrolled {
+      background:#fff;
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .gnb-inner {
+      max-width:1200px;
+      height:100%;
+      margin:0 auto;
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .gnb-logo a {
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:-0.04em;
+    }
+
+    .gnb-logo span {
+      color:var(--red);
+    }
+
+    .gnb-menu {
+      display:flex;
+      align-items:center;
+      gap:24px;
+    }
+
+    .gnb-menu a {
+      font-size:14px;
+      font-weight:700;
+      color:#333;
+    }
+
+    .gnb-menu a:not(.btn):hover { color:var(--red); }
+
+    /* =====================
+       Common
+    ====================== */
+    section {
+      padding:150px 24px;
+    }
+
+    .inner {
+      max-width:1120px;
+      margin:0 auto;
+    }
+
+    .section-kicker {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:18px;
+      font-size:13px;
+      font-weight:900;
+      color:var(--red);
+      letter-spacing:-0.02em;
+    }
+
+    .section-kicker::before {
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--red);
+    }
+
+    .section-title {
+      font-size:44px;
+      line-height:1.22;
+      letter-spacing:-0.06em;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    .section-desc {
+      font-size:18px;
+      color:var(--gray);
+      letter-spacing:-0.03em;
+    }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 26px;
+      border-radius:999px;
+      font-size:15px;
+      font-weight:800;
+      border:1px solid transparent;
+      transition:all .22s ease;
+      cursor:pointer;
+    }
+
+    .btn.primary {
+      background:var(--red);
+      color:#fff;
+      box-shadow:0 16px 30px rgba(215,25,32,.22);
+    }
+
+    .btn.primary:hover {
+      background:#b9151b;
+      transform:translateY(-2px);
+    }
+
+    .btn.outline {
+      background:#fff;
+      border-color:#ddd;
+      color:#111;
+    }
+
+    .btn.outline:hover {
+      background:#f5f5f5;
+      transform:translateY(-2px);
+    }
+
+    .btn.small {
+      padding:9px 16px;
+      font-size:13px;
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(44px);
+      transition:all .7s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.show {
+      opacity:1;
+      transform:translateY(0);
+    }
 
     /* =====================
        Hero
     ====================== */
     .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 24px;
-      padding-top: 72px;
-      position: relative;
-      background: #fff;
+      min-height:100vh;
+      padding:120px 24px 80px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(215,25,32,.10), transparent 30%),
+        linear-gradient(180deg,#fff 0%,#fff 65%,#fafafa 100%);
     }
 
     .hero-inner {
-      max-width: 960px;
-      text-align: center;
-      transition: all 0.4s ease;
+      max-width:1180px;
+      width:100%;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.04fr .96fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .hero-kicker {
+      display:inline-flex;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff3f3;
+      color:var(--red);
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:22px;
+      border:1px solid #ffe0e0;
+      opacity:0;
+      transform:translateY(24px);
+      animation:fadeUp .75s ease forwards;
     }
 
     .hero-title {
-      font-size: 52px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.8s ease-out forwards;
+      font-size:68px;
+      line-height:1.08;
+      letter-spacing:-0.075em;
+      font-weight:950;
+      margin-bottom:26px;
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp .75s ease forwards .12s;
     }
 
-    .hero-title .highlight {
-      color: #D71920;
-    }
+    .hero-title .highlight { color:var(--red); }
 
     .hero-subtitle {
-      font-size: 22px;
-      color: #333;
-      margin-bottom: 16px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.8s ease-out forwards;
-      animation-delay: 0.2s;
+      font-size:23px;
+      line-height:1.45;
+      font-weight:800;
+      letter-spacing:-0.04em;
+      margin-bottom:14px;
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp .75s ease forwards .24s;
     }
 
     .hero-desc {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 36px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.8s ease-out forwards;
-      animation-delay: 0.35s;
+      font-size:17px;
+      color:var(--gray);
+      margin-bottom:34px;
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp .75s ease forwards .36s;
     }
 
     .hero-cta {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.8s ease-out forwards;
-      animation-delay: 0.5s;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp .75s ease forwards .48s;
     }
 
-    .btn {
-      padding: 14px 26px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      transition: all 0.2s ease;
+    .hero-visual {
+      position:relative;
+      min-height:520px;
+      opacity:0;
+      transform:translateY(34px) scale(.98);
+      animation:fadeUp .9s ease forwards .42s;
     }
 
-    .btn.primary { background: #D71920; color: #fff; }
-    .btn.primary:hover { background: #b9151b; }
-    .btn.outline { border: 1px solid #ddd; }
-    .btn.outline:hover { background: #f5f5f5; }
+    .phone-card {
+      position:absolute;
+      right:30px;
+      top:10px;
+      width:310px;
+      min-height:560px;
+      background:#111;
+      border-radius:38px;
+      padding:16px;
+      box-shadow:0 40px 80px rgba(0,0,0,.22);
+      transform:rotate(3deg);
+    }
 
-    .hero.scroll-out .hero-inner {
-      transform: scale(0.96);
-      opacity: 0.4;
+    .phone-screen {
+      height:100%;
+      min-height:528px;
+      border-radius:28px;
+      background:#fff;
+      padding:22px 18px;
+      overflow:hidden;
+    }
+
+    .app-top {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+    }
+
+    .app-logo {
+      font-weight:950;
+      letter-spacing:-0.05em;
+    }
+
+    .app-badge {
+      font-size:12px;
+      color:#fff;
+      background:var(--red);
+      padding:5px 9px;
+      border-radius:999px;
+      font-weight:800;
+    }
+
+    .deal-card {
+      padding:18px;
+      border:1px solid #eee;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      margin-bottom:16px;
+      background:#fff;
+    }
+
+    .deal-img {
+      height:120px;
+      border-radius:18px;
+      background:
+        linear-gradient(135deg, rgba(215,25,32,.18), rgba(0,0,0,.06)),
+        #f1f1f1;
+      margin-bottom:14px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .deal-img::after {
+      content:"20:00";
+      position:absolute;
+      right:12px;
+      bottom:10px;
+      background:#111;
+      color:#fff;
+      border-radius:999px;
+      padding:5px 10px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .deal-title {
+      font-size:17px;
+      font-weight:900;
+      letter-spacing:-0.04em;
+      margin-bottom:6px;
+    }
+
+    .deal-price {
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+    }
+
+    .origin {
+      color:#aaa;
+      text-decoration:line-through;
+      font-size:14px;
+    }
+
+    .sale {
+      color:var(--red);
+      font-weight:950;
+      font-size:22px;
+    }
+
+    .visit-card {
+      position:relative;
+      width: 260px;
+      left:0;
+      bottom:58px;
+      width:300px;
+      background:#fff;
+      border:1px solid #eee;
+      border-radius:26px;
+      padding:20px;
+      box-shadow:0 28px 60px rgba(0,0,0,.14);
+      animation:float 3.2s ease-in-out infinite;
+    }
+
+    .visit-card strong {
+      display:block;
+      font-size:28px;
+      letter-spacing:-0.05em;
+      margin-bottom:6px;
+    }
+
+    .visit-card p {
+      color:#666;
+      font-size:14px;
+    }
+
+    .mini-stats {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .mini-stat {
+      background:#f7f7f7;
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .mini-stat b {
+      display:block;
+      color:var(--red);
+      font-size:18px;
     }
 
     .scroll-indicator {
-      position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: #aaa;
-      animation: bounce 1.6s infinite;
+      position:absolute;
+      bottom:24px;
+      left:50%;
+      transform:translateX(-50%);
+      color:#aaa;
+      font-size:12px;
+      font-weight:700;
+      animation:bounce 1.7s infinite;
     }
 
     /* =====================
-       Service
+       Problem
     ====================== */
-    .service {
-      min-height: 100vh;
-      background: #fafafa;
-      padding: 120px 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .problem-section {
+      background:#111;
+      color:#fff;
     }
 
-    .service-inner {
-      max-width: 1000px;
-      width: 100%;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 0.6s ease;
+    .problem-section .section-desc {
+      color:#aaa;
     }
 
-    .service.show .service-inner {
-      opacity: 1;
-      transform: translateY(0);
+    .problem-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:56px;
     }
 
-    .service-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
+    .problem-card {
+      min-height:250px;
+      border-radius:28px;
+      padding:30px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
 
-    .card {
-      background: #fff;
-      padding: 32px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    .problem-num {
+      color:rgba(255,255,255,.28);
+      font-size:15px;
+      font-weight:900;
+    }
+
+    .problem-card h4 {
+      font-size:27px;
+      line-height:1.25;
+      letter-spacing:-0.05em;
+      margin-bottom:14px;
+    }
+
+    .problem-card p {
+      color:#bbb;
+      font-size:16px;
     }
 
     /* =====================
-       Why
+       Solution Flow
     ====================== */
-    .why {
-      padding: 140px 24px;
-      display: flex;
-      justify-content: center;
+    .solution-section {
+      background:#fff;
     }
 
-    .why-inner {
-      max-width: 1100px;
-      width: 100%;
-      text-align: center;
+    .flow-grid {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:58px;
     }
 
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 60px;
+    .flow-card {
+      position:relative;
+      padding:28px 22px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:#fff;
+      min-height:230px;
+      box-shadow:0 10px 30px rgba(0,0,0,.04);
+      overflow:hidden;
     }
 
-    .why-box {
-      padding: 40px;
-      border-radius: 16px;
-      text-align: left;
-      opacity: 0;
-      transition: all 0.6s ease;
+    .flow-card::after {
+      content:"";
+      position:absolute;
+      right:-30px;
+      top:-30px;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      background:rgba(215,25,32,.08);
     }
 
-    .problem {
-      background: #f8f8f8;
-      transform: translateX(-60px);
+    .flow-step {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:var(--red);
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+      margin-bottom:26px;
     }
 
-    .solution {
-      background: #fff5f5;
-      border: 1px solid #ffe1e1;
-      transform: translateX(60px);
+    .flow-card h4 {
+      font-size:22px;
+      line-height:1.3;
+      letter-spacing:-0.05em;
+      margin-bottom:12px;
     }
 
-    .solution h4 { color: #D71920; }
-
-    .why.show .problem,
-    .why.show .solution {
-      opacity: 1;
-      transform: translateX(0);
+    .flow-card p {
+      color:#666;
+      font-size:15px;
     }
 
     /* =====================
-       Technology
+       Pricing
     ====================== */
-    .tech {
-      padding: 140px 24px;
-      background: #fafafa;
+    .pricing {
+      background:#fafafa;
     }
 
-    .tech-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 0.6s ease;
+    .pricing-layout {
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:46px;
+      align-items:center;
+      margin-top:56px;
     }
 
-    .tech.show .tech-inner {
-      opacity: 1;
-      transform: translateY(0);
+    .pricing-box {
+      background:#fff;
+      border-radius:34px;
+      padding:48px;
+      border:1px solid #eee;
+      box-shadow:0 24px 60px rgba(0,0,0,.06);
     }
 
-    .tech-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 60px;
-      text-align: left;
+    .pricing-box h3 {
+      font-size:92px;
+      color:var(--red);
+      line-height:1;
+      letter-spacing:-0.08em;
+      margin-bottom:16px;
     }
 
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  margin-top: 60px;
-}
+    .pricing-box strong {
+      font-size:22px;
+      letter-spacing:-0.05em;
+    }
 
-.tech-card {
-  background: #fff;
-  padding: 24px;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-}
+    .pricing-list {
+      display:grid;
+      gap:14px;
+    }
 
-.tech-tag {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  color: #D71920;
-  margin-bottom: 12px;
-}
+    .pricing-item {
+      padding:22px 24px;
+      border-radius:22px;
+      background:#fff;
+      border:1px solid #eee;
+      font-size:17px;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .check {
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      background:var(--red);
+      color:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      flex:0 0 auto;
+    }
 
     /* =====================
-       Roadmap
+       Compare
     ====================== */
-    .roadmap {
-      padding: 140px 24px;
+    .compare-section {
+      background:#fff;
     }
 
-    .roadmap-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 0.6s ease;
+    .compare-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      margin-top:56px;
     }
 
-    .roadmap.show .roadmap-inner {
-      opacity: 1;
-      transform: translateY(0);
+    .compare-box {
+      border-radius:32px;
+      padding:36px;
+      border:1px solid #eee;
+      background:#fafafa;
     }
 
-    .roadmap-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 60px;
+    .compare-box.active {
+      background:#fff5f5;
+      border-color:#ffdada;
     }
 
-    .step {
-      padding: 24px;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    .compare-box h4 {
+      font-size:26px;
+      margin-bottom:26px;
+      letter-spacing:-0.05em;
     }
 
-    .badge {
-      font-size: 13px;
-      font-weight: 700;
-      color: #D71920;
-      display: inline-block;
-      margin-bottom: 12px;
+    .compare-box.active h4 {
+      color:var(--red);
     }
 
+    .compare-box li {
+      padding:16px 0;
+      border-bottom:1px solid rgba(0,0,0,.07);
+      color:#555;
+      font-weight:700;
+    }
 
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 80px;
-  position: relative;
-}
-
-.timeline-step {
-  text-align: center;
-  padding: 12px;
-}
-
-.timeline-step .dot {
-  width: 18px;
-  height: 18px;
-  background: #ddd;
-  border-radius: 50%;
-  display: inline-block;
-  margin-bottom: 16px;
-}
-
-.timeline-step.active .dot {
-  background: #D71920;
-}
-
-.timeline-step h4 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
+    .compare-box li:last-child { border-bottom:0; }
 
     /* =====================
-       CTA
+       Use Cases
+    ====================== */
+    .usecase {
+      background:#111;
+      color:#fff;
+    }
+
+    .usecase .section-desc { color:#aaa; }
+
+    .usecase-grid {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:56px;
+    }
+
+    .usecase-card {
+      padding:28px;
+      border-radius:28px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .usecase-card span {
+      display:block;
+      color:var(--red);
+      font-size:13px;
+      font-weight:950;
+      margin-bottom:14px;
+    }
+
+    .usecase-card h4 {
+      font-size:22px;
+      letter-spacing:-0.05em;
+      margin-bottom:10px;
+    }
+
+    .usecase-card p {
+      color:#bbb;
+      font-size:15px;
+    }
+
+    /* =====================
+       Contact CTA
     ====================== */
     .cta {
-      padding: 120px 24px;
-      background: #111;
-      color: #fff;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(80px);
-      transition: all 0.6s ease;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(215,25,32,.14), transparent 26%),
+        #fff;
+      text-align:center;
     }
 
-    .cta.show {
-      opacity: 1;
-      transform: translateY(0);
+    .contact-form {
+      max-width:480px;
+      margin:44px auto 0;
+      display:flex;
+      flex-direction:column;
+      gap:13px;
+      text-align:left;
     }
+
+    .contact-form input,
+    .contact-form textarea {
+      width:100%;
+      padding:16px 18px;
+      border-radius:14px;
+      border:1px solid #e5e5e5;
+      background:#fff;
+      font-size:15px;
+      font-family: inherit;
+      outline:none;
+      transition:all .2s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color:var(--red);
+      box-shadow:0 0 0 4px rgba(215,25,32,.08);
+    }
+
+    .contact-form textarea {
+      min-height:130px;
+      resize:vertical;
+    }
+
+    .contact-form .btn {
+      width:100%;
+      border:0;
+      margin-top:4px;
+    }
+
+    .btn:disabled {
+      background:#ccc;
+      box-shadow:none;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .btn.loading { background:#999; }
 
     /* =====================
        Footer
     ====================== */
     .footer {
-      padding: 48px 24px;
-      background: #f5f5f5;
-      border-top: 1px solid #eee;
+      padding:54px 24px;
+      background:#f5f5f5;
+      border-top:1px solid #eee;
     }
 
     .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
+      max-width:1120px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:28px;
+    }
+
+    .footer p {
+      font-size:14px;
+      color:#555;
+    }
+
+    .footer-links {
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      align-content:flex-start;
     }
 
     .footer-links a {
-      margin-right: 16px;
-      font-size: 14px;
-      color: #666;
+      font-size:14px;
+      color:#666;
+      font-weight:700;
+    }
+
+    .footer-links a:hover { color:var(--red); }
+
+    /* =====================
+       Scroll Top
+    ====================== */
+    .scroll-top {
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background:var(--red);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 12px 28px rgba(0,0,0,.24);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(12px);
+      transition:all .3s ease;
+      z-index:999;
+    }
+
+    .scroll-top.show {
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
     }
 
     /* =====================
-       Animations
+       Animation
     ====================== */
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to { opacity:1; transform:translateY(0) scale(1); }
     }
 
     @keyframes bounce {
-      0%,100% { transform: translate(-50%,0); }
-      50% { transform: translate(-50%,6px); }
+      0%,100% { transform:translate(-50%,0); }
+      50% { transform:translate(-50%,7px); }
     }
 
-    @media (max-width: 768px) {
-      .hero-title { font-size: 36px; }
-      .hero-title .line1,
-        .hero-title .line2 {
-          display: block;
-        }
-      .service-cards,
-      .tech-list,
-      .roadmap-steps,
-      .why-grid { grid-template-columns: 1fr; }
-      .problem, .solution { transform: translateY(40px); }
-      .why.show .problem, .why.show .solution { transform: translateY(0); }
-      .timeline-step p {
-        font-size: 15px;
-        line-height: 1.5;
-        word-break: keep-all;
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-12px); }
+    }
+
+    /* =====================
+       Mobile
+    ====================== */
+    @media (max-width:900px) {
+      section { padding:110px 20px; }
+
+      .gnb-menu {
+        gap:12px;
+      }
+
+      .gnb-menu a:not(.btn) {
+        display:none;
+      }
+
+      .hero {
+        padding-top:110px;
+      }
+
+      .hero-inner {
+        grid-template-columns:1fr;
+        gap:48px;
+      }
+
+      .hero-title {
+        font-size:46px;
+      }
+
+      .hero-subtitle {
+        font-size:20px;
+      }
+
+      .hero-visual {
+        min-height:430px;
+      }
+
+      .phone-card {
+        right:0;
+        width:270px;
+        min-height:480px;
+      }
+
+      .phone-screen {
+        min-height:448px;
+      }
+
+      .visit-card {
+        left:0;
+        bottom:20px;
+        width:255px;
+      }
+
+      .section-title {
+        font-size:34px;
+      }
+
+      .problem-grid,
+      .flow-grid,
+      .usecase-grid {
+        grid-template-columns:1fr;
+      }
+
+      .pricing-layout,
+      .compare-grid {
+        grid-template-columns:1fr;
+      }
+
+      .pricing-box h3 {
+        font-size:74px;
+      }
+
+      .footer-inner {
+        flex-direction:column;
       }
     }
-    /* =====================
-   Contact Form
-===================== */
-.contact-form {
-  max-width: 420px;
-  margin: 0 auto;
+
+    @media (max-width:420px) {
+      .hero-title { font-size:40px; }
+      .hero-cta .btn { width:100%; }
+      .phone-card { width:245px; }
+      .visit-card { width:235px; }
+    }
+.visit-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 14px;
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
-}
-
-.contact-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.btn.loading {
-  background: #999;
-}
-
-/* =====================
-   Scroll To Top Button
-===================== */
-.scroll-top {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #D71920;
-  color: #fff;
-  display: flex;
-  align-items: center;
+  align-items: center;   /* 핵심: 가로 가운데 */
   justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px);
-  transition: all 0.3s ease;
-  z-index: 999;
+  text-align: center;    /* 텍스트 가운데 */
 }
 
-.scroll-top.show {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.scroll-top:hover {
-  background: #b9151b;
-}
-
-@media (max-width: 768px) {
-  .scroll-top {
-    right: 16px;
-    bottom: 16px;
-  }
-}
-
-/* =====================
-   GNB
-===================== */
-.gnb {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 72px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-.gnb.scrolled {
-  background: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-}
-
-.gnb-inner {
-  max-width: 1200px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.gnb-logo a {
-  font-size: 20px;
+.visit-title {
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  margin-bottom: 10px;
 }
 
-.gnb-menu {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.gnb-menu a {
+.visit-desc {
   font-size: 14px;
-  font-weight: 600;
-  color: #333;
+  color: #666;
+  margin-bottom: 18px;
+  line-height: 1.5;
 }
 
-/* GNB 일반 텍스트 메뉴만 hover 적용 */
-.gnb-menu a:not(.btn):hover {
+.mini-stats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mini-stat {
+  background: #f7f7f7;
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.mini-stat b {
+  display: block;
+  color: #D71920;
+  font-size: 16px;
+}
+
+.mini-stat span {
+  font-size: 12px;
+  color: #666;
+}
+
+.agree-box {
+  margin-top: 14px;
+}
+
+.agree-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.agree-title span {
   color: #D71920;
 }
 
-/* GNB 문의하기 버튼 hover */
-.gnb-menu .btn.primary:hover {
-  background: #b9151b;
-  color: #fff;
+.agree-content {
+  height: 160px;
+  overflow-y: auto;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #444;
+  background: #fafafa;
+  margin-bottom: 10px;
 }
 
-.btn.small {
-  padding: 8px 16px;
-  font-size: 13px;
-  border-radius: 6px;
+.agree-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  
 }
-   
+
+.agree-check input {
+  width: 16px;
+  height: 16px;
+}
+
+.qr-flow-card {
+  position: relative;
+}
+
+.flow-qr-mini {
+  position: absolute;
+  top: 86px;
+  right: 60px;
+  width: 58px;
+  height: 58px;
+  opacity: 0.95;
+}
+
+.qr-grid-mini {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 2px solid #111;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.qr-modules-mini {
+  position: absolute;
+  inset: 12px;
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  grid-template-rows: repeat(21, 1fr);
+  gap: 1px;
+}
+
+.qr-finder-mini {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #111;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.qr-finder-mini::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background: #111;
+}
+
+.qr-finder-mini.tl { top: 6%; left: 6%; }
+.qr-finder-mini.tr { top: 6%; right: 6%; }
+.qr-finder-mini.bl { bottom: 6%; left: 6%; }
+
+.qr-logo-dot-mini {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #D71920;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.qr-scan-mini {
+  position: absolute;
+  left: 12%;
+  top: 0;
+  width: 76%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D71920, transparent);
+  box-shadow: 0 0 5px rgba(215,25,32,0.45);
+  animation: qrScanMini 2s ease-in-out infinite;
+}
+
+@keyframes qrScanMini {
+   0% { transform: translateY(8px); }
+  50% { transform: translateY(48px); }
+  100% { transform: translateY(8px); }
+}
+
   </style>
 </head>
 
@@ -551,205 +1095,323 @@
 <header class="gnb" id="gnb">
   <div class="gnb-inner">
     <div class="gnb-logo">
-      <a href="/">Linkonomy</a>
+      <a href="/">Linkonomy<span>.</span></a>
     </div>
 
     <nav class="gnb-menu">
-      <a href="#hero">회사소개</a>
-      <a href="/service.html">서비스</a>
-      <a href="#contact" class="btn primary small">문의</a>
+      <a href="#problem">문제인식</a>
+      <a href="#solution">서비스 구조</a>
+      <a href="#pricing">수수료</a>
+      <a href="#contact" class="btn primary small">제휴문의</a>
     </nav>
   </div>
 </header>
 
-<!-- Hero -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <h1 class="hero-title">
-      <span class="line1">한가한 시간도</span>
-      <span class="line2">
-        <span class="highlight">매출</span>이 됩니다
-      </span>
-    </h1>
-    <h2 class="hero-subtitle">남는 시간을 매출로 바꾸는<br>시간 기반 딜 커머스 플랫폼</h2>
-    <p class="hero-desc">상점의 유휴 시간을 기회로 만들고<br>AI 기술로 운영은 더 단순하게 만듭니다</p>
-    <div class="hero-cta">
-      <a href="#service" class="btn primary">우리가 하는 일</a>
-      <a href="#contact" class="btn outline">제휴문의</a>
+    <div class="hero-copy">
+      <div class="hero-kicker">지역 기반 유휴시간 타임딜 플랫폼</div>
+
+      <h1 class="hero-title">
+        비어있는 시간,<br />
+        <span class="highlight">매출로 바꾸세요.</span>
+      </h1>
+
+      <h2 class="hero-subtitle">
+        예약 확정, 선결제, 노쇼 방지까지<br />
+        타임딜링 하나로 시작합니다.
+      </h2>
+
+      <p class="hero-desc">
+        타임딜링은 상점의 한가한 시간대를 고객에게 연결해<br />
+        광고비가 아닌 실제 방문 매출을 만드는 플랫폼입니다.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn primary">입점 문의하기</a>
+        <a href="timedealing_service.pdf"
+           class="btn outline" 
+           download>
+          서비스 소개서 다운로드
+         </a>
+      </div>
     </div>
-  </div>
+
+    <div class="hero-visual">
+
+      <div class="phone-mockup">
+        <img src="phone-mockup.png" alt="타임딜링 앱 화면" />
+      </div>
+    </div>
+
   <div class="scroll-indicator">scroll ↓</div>
 </section>
 
-<!-- Service -->
-<section class="service" id="service">
-  <div class="service-inner">
-    <h3>우리가 하는 일</h3>
-    <p>시간 · 사람 · AI를 연결합니다</p>
-    <div class="service-cards">
-      <div class="card"><h4>Time Dealing</h4><p>시간 기반 커머스 플랫폼</p></div>
-      <div class="card"><h4>AI 챗봇</h4><p>자체 개발 운영 자동화</p></div>
-      <div class="card"><h4>AI 서비스 확장</h4><p>지속적인 AI 기능 출시</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Why -->
-<section class="why">
-  <div class="why-inner">
-    <h3>왜 Linkonomy인가</h3>
-    <p>로컬 커머스의 구조를 재 설계합니다</p>
-    <div class="why-grid">
-      <div class="why-box problem">
-        <h4>기존 로컬 커머스의 문제</h4><br>
-        <ul>
-          <li>과도한 수수료 구조</li>
-          <li>일방적인 할인 및 프로모션</li>
-          <li>상위 노출을 위한 비용 발생</li>
-        </ul>
-      </div>
-      <div class="why-box solution">
-        <h4>Linkonomy의 방식</h4><br>
-        <ul>
-          <li>합리적인 수수료</li>
-          <li>자율적 가격 정책</li>
-          <li>사용자 위치 기반 우선 노출</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Technology -->
-<section class="tech">
-  <div class="tech-inner">
-    <h3 class="section-title">기술 & 강점</h3>
+<section class="problem-section" id="problem">
+  <div class="inner reveal">
+    <div class="section-kicker">Problem</div>
+    <h3 class="section-title">
+      매장은 열려 있는데,<br />
+      매출이 비는 시간이 있습니다.
+    </h3>
     <p class="section-desc">
-      실제 서비스 운영을 통해 검증된 기술로<br />
-      플랫폼과 AI를 함께 고도화합니다
+      타임딜링은 이 비어있는 시간을 그냥 흘려보내지 않게 만듭니다.
     </p>
 
-    <div class="tech-grid">
-      <div class="tech-card">
-        <span class="tech-tag">LBS</span>
-        <h4>위치기반 서비스</h4>
-        <p>
-          사용자 위치 기준 인근 타임딜 노출<br />
-          상권·거리·접근성 고려 실사용 중심
-        </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div>
+          <h4>비어있는 테이블</h4>
+          <p>공간은 준비되어 있지만 손님이 없으면 매출은 0원입니다.</p>
+        </div>
       </div>
 
-      <div class="tech-card">
-        <span class="tech-tag">TIME</span>
-        <h4>시간 단위 딜 운영</h4>
-        <p>
-          특정 시간·수량에 따라 유연한 운영<br />
-          한가한 시간대를 매출로 전환
-        </p>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div>
+          <h4>애매한 시간대</h4>
+          <p>피크타임 전후, 마감 전, 예약 공백 시간은 늘 생깁니다.</p>
+        </div>
       </div>
 
-      <div class="tech-card">
-        <span class="tech-tag">AI</span>
-        <h4>확장 전제 AI 구조</h4>
-        <p>
-          챗봇 중심 AI에서<br />
-          매출·수요 인사이트로 확장 예정
-        </p>
-      </div>
-
-      <div class="tech-card">
-        <span class="tech-tag">DATA</span>
-        <h4>플랫폼 + AI 연계</h4>
-        <p>
-          운영 데이터 기반<br />
-          AI 활용 범위 점진 확대 예정
-        </p>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div>
+          <h4>광고비 부담</h4>
+          <p>노출에 돈을 써도 실제 방문으로 이어질지는 알 수 없습니다.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Roadmap -->
-<section class="roadmap">
-  <div class="roadmap-inner">
-    <h3 class="section-title">서비스 로드맵</h3>
+<section class="solution-section" id="solution">
+  <div class="inner reveal">
+    <div class="section-kicker">How it works</div>
+    <h3 class="section-title">
+      타임딜링은<br />
+      이렇게 작동합니다.
+    </h3>
     <p class="section-desc">
-      지금 검증하고, 다음을 만들며, 미래로 확장합니다
+      복잡한 광고가 아니라, 남는 시간에 딜을 열고 실제 방문을 만듭니다.
     </p>
 
-    <div class="timeline">
-      <div class="timeline-step active">
-        <span class="dot"></span>
-        <h4>Now</h4>
-        <p>
-          유휴 시간을 매출로 만드는<br />
-          타임딜링 서비스 운영
-        </p>
+    <div class="flow-grid">
+      <div class="flow-card">
+        <span class="flow-step">1</span>
+        <h4>남는 시간에<br />딜 등록</h4>
+        <p>상점이 원하는 시간, 수량, 가격으로 타임딜을 등록합니다.</p>
       </div>
 
-      <div class="timeline-step">
-        <span class="dot"></span>
-        <h4>Next</h4>
-        <p>
-          AI 기반 상점 운영·매출<br />
-          인사이트 제공
-        </p>
+      <div class="flow-card">
+        <span class="flow-step">2</span>
+        <h4>고객이<br />선결제 예약</h4>
+        <p>고객은 오늘 또는 내일 가능한 딜을 보고 바로 결제합니다.</p>
       </div>
 
-      <div class="timeline-step">
-        <span class="dot"></span>
-        <h4>Future</h4>
-        <p>
-          AI가 움직이는<br />
-          로컬 커머스 생태계 구축
-        </p>
+      <div class="flow-card qr-flow-card">
+        <span class="flow-step">3</span>
+
+        <div class="flow-qr-mini">
+          <div class="qr-grid-mini">
+            <div class="qr-finder-mini tl"></div>
+            <div class="qr-finder-mini tr"></div>
+            <div class="qr-finder-mini bl"></div>
+            <div class="qr-modules-mini"></div>
+            <div class="qr-logo-dot-mini"></div>
+          </div>
+          <div class="qr-scan-mini"></div>
+        </div>
+
+  <h4>방문 후<br />QR 인증</h4>
+  <p>고객이 방문하면 상점이 QR을 확인해 사용 완료 처리합니다.</p>
+</div>
+
+      <div class="flow-card">
+        <span class="flow-step">4</span>
+        <h4>사용 완료 건<br />정산</h4>
+        <p>실제 방문 완료된 거래를 기준으로 정산됩니다.</p>
       </div>
     </div>
   </div>
 </section>
 
+<section class="pricing" id="pricing">
+  <div class="inner reveal">
+    <div class="section-kicker">Commission</div>
+    <h3 class="section-title">
+      수수료는 단순합니다.<br />
+      사용된 건에만 부과
+    </h3>
+    <p class="section-desc">
+      광고비를 먼저 쓰는 구조가 아니라, 실제 방문 매출이 발생했을 때만 수수료가 적용됩니다.
+    </p>
 
-<!-- CTA -->
+    <div class="pricing-layout">
+      <div class="pricing-box">
+        
+        <strong>실제 방문 매출 완료 기준</strong>
+        <p style="margin-top:12px;color:#666;">
+          상점 입장에서는 부담 없이 테스트할 수 있고, 플랫폼은 실제 성과에만 수수료를 받습니다.
+        </p>
+      </div>
+
+      <div class="pricing-list">
+        <div class="pricing-item"><span class="check">✓</span>초기 광고비 없음</div>
+        <div class="pricing-item"><span class="check">✓</span>고객 선결제로 예약 확정</div>
+        <div class="pricing-item"><span class="check">✓</span>방문 QR 인증 기반 사용 처리</div>
+        <div class="pricing-item"><span class="check">✓</span>노쇼/취소 정책으로 손실 최소화</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare-section">
+  <div class="inner reveal">
+    <div class="section-kicker">Difference</div>
+    <h3 class="section-title">
+      광고 플랫폼이 아니라,<br />
+      매출 전환 플랫폼입니다.
+    </h3>
+    <p class="section-desc">
+      타임딜링은 단순 노출보다 실제 방문과 결제를 중심으로 설계됩니다.
+    </p>
+
+    <div class="compare-grid">
+      <div class="compare-box">
+        <h4>기존 광고/노출 방식</h4>
+        <ul>
+          <li>광고비를 먼저 지출</li>
+          <li>노출은 되지만 방문은 불확실</li>
+          <li>항상 할인하면 브랜드 가치 하락</li>
+          <li>피크타임에도 무리한 할인 발생</li>
+        </ul>
+      </div>
+
+      <div class="compare-box active">
+        <h4>타임딜링 방식</h4>
+        <ul>
+          <li>매출 발생 시 수수료 지급</li>
+          <li>위치 기반 우선 노출</li>
+          <li>지정 시간에만 선택적 할인</li>
+          <li>방문 QR 인증으로 사용 여부 확인</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="usecase">
+  <div class="inner reveal">
+    <div class="section-kicker">Use Case</div>
+    <h3 class="section-title">
+      이런 업종에<br />
+      특히 잘 맞습니다.
+    </h3>
+    <p class="section-desc">
+      핵심은 비어있는 시간, 남는 좌석, 예약 공백입니다.
+    </p>
+
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span>CAFE</span>
+        <h4>카페</h4>
+        <p>오후 3~5시, 마감 전 디저트 재고 소진에 적합합니다.</p>
+      </div>
+
+      <div class="usecase-card">
+        <span>FOOD</span>
+        <h4>음식점</h4>
+        <p>피크타임 전후 빈 테이블을 예약 매출로 연결합니다.</p>
+      </div>
+
+      <div class="usecase-card">
+        <span>BEAUTY</span>
+        <h4>뷰티</h4>
+        <p>당일 예약 공백, 취소된 시간대를 다시 판매할 수 있습니다.</p>
+      </div>
+
+      <div class="usecase-card">
+        <span>FITNESS</span>
+        <h4>피트니스</h4>
+        <p>낮 시간대 체험권, PT 공백 시간 판매에 활용할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cta" id="contact">
-  <h3>지금, 연결을 시작하세요</h3>
-  <p>상점과 고객을 잇는 새로운 경제</p><br>
+  <div class="inner reveal">
+    <div class="section-kicker">Contact</div>
+    <h3 class="section-title">
+      비어있는 시간을<br />
+      매출로 바꿔보세요.
+    </h3>
+    <p class="section-desc">
+      입점, 제휴, 서비스 문의를 남겨주시면 확인 후 연락드립니다.
+    </p>
 
-  <form id="contactForm" class="contact-form">
-    <input type="text" name="company" placeholder="회사명" required />
-    <input type="text" name="name" placeholder="담당자명" required />
-    <input type="email" name="email" placeholder="이메일" required />
-    <input type="text" name="phone" placeholder="연락처 (선택)" />
-    <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
+    <form id="contactForm" class="contact-form">
+      <input type="text" name="company" placeholder="회사명 또는 매장명" required />
+      <input type="text" name="name" placeholder="담당자명" required />
+      <input type="email" name="email" placeholder="이메일" required />
+      <input type="text" name="phone" placeholder="연락처 (선택)" />
+      <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
 
-    <button type="submit" class="btn primary" id="submitBtn" disabled>
-      <span id="btnText">제휴 문의 보내기</span>
-      <span id="btnCheck" style="display:none;margin-left:6px;">✔</span>
-    </button>
+      <div class="agree-box">
 
-<p id="formStatus" style="margin-top:12px;font-size:14px;"></p>
+        <div class="agree-title">
+          개인정보 수집 및 이용 동의 <span>*</span>
+        </div>
 
-  </form>
+        <div class="agree-content">
+          (주)링코노미(이하 ‘회사’)는 문의 대응을 위해 개인정보를 수집 및 이용합니다.<br><br>
 
+          <b>수집 항목</b><br>
+          회사명, 담당자명, 이메일, 연락처<br><br>
+      
+          <b>수집 목적</b><br>
+          제휴 문의 대응 및 서비스 안내<br><br>
+      
+          <b>보관 기간</b><br>
+          문의 처리 완료 후 3개월 보관 후 파기
+        </div>
+
+        <label class="agree-check">
+          <input type="checkbox" id="agreeRequired" />
+          <span>개인정보 수집 및 이용에 동의합니다.</span>
+        </label>
+
+      </div>
+
+</div>
+
+      <button type="submit" class="btn primary" id="submitBtn" disabled>
+        <span id="btnText">제휴 문의 보내기</span>
+        <span id="btnCheck" style="display:none;margin-left:6px;">✔</span>
+      </button>
+
+      <p id="formStatus" style="margin-top:4px;font-size:14px;text-align:center;color:#666;"></p>
+    </form>
+  </div>
 </section>
 
-<!-- Footer -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
       <strong>주식회사 링코노미 (Linkonomy Inc.)</strong>
 
-      <!-- 🔴 서비스 운영 문구 -->
-      <p style="margin-top:6px;font-size:14px;color:#444;">
+      <p style="margin-top:8px;">
         주식회사 링코노미는 지역 기반 타임딜 플랫폼
         <a href="https://timedealing.com" target="_blank" rel="noopener"
-           style="color:#D71920;font-weight:600;text-decoration:none;">
+           style="color:#D71920;font-weight:800;">
           타임딜링(TimeDealing)
         </a>
         을 운영하고 있습니다.
       </p>
 
-      <!-- 🔴 법정 필수 사업자 정보 -->
-      <p style="margin-top:6px;font-size:14px;color:#555;">
+      <p style="margin-top:10px;">
         대표자: 고영권<br/>
         사업자등록번호: 694-87-03856<br/>
         통신판매업 신고번호: 제 2026-대전유성-0225 호<br/>
@@ -758,7 +1420,7 @@
         이메일: <a href="mailto:contact@linkonomy.xyz">contact@linkonomy.xyz</a>
       </p>
 
-      <p style="margin-top:8px;font-size:13px;color:#888;">
+      <p style="margin-top:10px;font-size:13px;color:#888;">
         © 2026 Linkonomy Inc. All rights reserved.
       </p>
     </div>
@@ -772,30 +1434,55 @@
   </div>
 </footer>
 
-
 <div class="scroll-top" id="scrollTopBtn" aria-label="상단으로 이동">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
     <path d="M6 14L12 8L18 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
-</div>  
+</div>
+
 <script>
-  // ===== 스크롤 애니메이션 =====
-  const hero = document.querySelector('.hero');
-  const service = document.querySelector('.service');
-  const why = document.querySelector('.why');
-  const tech = document.querySelector('.tech');
-  const roadmap = document.querySelector('.roadmap');
-  const cta = document.querySelector('.cta');
+  // ===== Scroll Reveal =====
+  const revealEls = document.querySelectorAll(".reveal");
 
-  window.addEventListener('scroll', () => {
+  function revealOnScroll() {
     const h = window.innerHeight;
+    revealEls.forEach((el) => {
+      if (el.getBoundingClientRect().top < h * 0.78) {
+        el.classList.add("show");
+      }
+    });
+  }
 
-    hero.classList.toggle('scroll-out', window.scrollY > h * 0.6);
-    service.classList.toggle('show', service.getBoundingClientRect().top < h * 0.75);
-    why.classList.toggle('show', why.getBoundingClientRect().top < h * 0.75);
-    tech.classList.toggle('show', tech.getBoundingClientRect().top < h * 0.75);
-    roadmap.classList.toggle('show', roadmap.getBoundingClientRect().top < h * 0.75);
-    cta.classList.toggle('show', cta.getBoundingClientRect().top < h * 0.8);
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
+
+  // ===== GNB Scroll Effect =====
+  const gnb = document.getElementById("gnb");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      gnb.classList.add("scrolled");
+    } else {
+      gnb.classList.remove("scrolled");
+    }
+  });
+
+  // ===== Scroll To Top =====
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > window.innerHeight * 0.6) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
 
   // ===== Contact Form =====
@@ -804,14 +1491,16 @@
   const submitBtn = document.getElementById("submitBtn");
   const btnText = document.getElementById("btnText");
   const btnCheck = document.getElementById("btnCheck");
-
   const requiredFields = ["company", "name", "email", "message"];
+  const agreeRequired = document.getElementById("agreeRequired");  
 
-  // 입력 상태 체크 → 버튼 활성화
   function checkFormValid() {
-    const isValid = requiredFields.every(
-      (field) => form[field].value.trim() !== ""
-    );
+    const isValid =
+      requiredFields.every(
+        (field) => form[field].value.trim() !== ""
+      ) &&
+     agreeRequired.checked; // 🔥 추가
+  
     submitBtn.disabled = !isValid;
   }
 
@@ -819,12 +1508,15 @@
     form[field].addEventListener("input", checkFormValid);
   });
 
+  agreeRequired.addEventListener("change", checkFormValid);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     submitBtn.disabled = true;
     submitBtn.classList.add("loading");
     btnText.textContent = "전송 중...";
+    btnCheck.style.display = "none";
     status.textContent = "";
 
     const data = {
@@ -844,52 +1536,37 @@
 
       if (!res.ok) throw new Error();
 
-      // ✅ 성공 처리
       btnText.textContent = "전송 완료";
       btnCheck.style.display = "inline";
       status.textContent = "문의가 성공적으로 전송되었습니다.";
+      status.style.color = "#D71920";
       form.reset();
+
     } catch {
-      // ❌ 실패 처리
       btnText.textContent = "제휴 문의 보내기";
       submitBtn.disabled = false;
       submitBtn.classList.remove("loading");
       status.textContent = "전송에 실패했습니다. 다시 시도해주세요.";
+      status.style.color = "#D71920";
     }
   });
 
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
+const miniModules = document.querySelector(".qr-modules-mini");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > window.innerHeight * 0.6) {
-      scrollTopBtn.classList.add("show");
+if (miniModules) {
+  for (let i = 0; i < 441; i++) {
+    const cell = document.createElement("div");
+
+    if (Math.random() > 0.46) {
+      cell.style.background = "#111";
     } else {
-      scrollTopBtn.classList.remove("show");
+      cell.style.background = "transparent";
     }
-  });
 
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-  
-// ===== GNB Scroll Effect =====
-const gnb = document.getElementById("gnb");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 20) {
-    gnb.classList.add("scrolled");
-  } else {
-    gnb.classList.remove("scrolled");
+    miniModules.appendChild(cell);
   }
-});
-
+}
 </script>
+
 </body>
 </html>
-
-
-
-
