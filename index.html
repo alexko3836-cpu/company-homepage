@@ -751,6 +751,26 @@
 
     .btn.loading { background:#999; }
 
+@media (max-width: 768px) {
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;   /* 🔥 핵심 */
+    align-items: center;
+  }
+
+  .phone-mockup {
+    width: 260px;
+    margin: 0 auto;            /* 🔥 안전장치 */
+  }
+
+  .phone-mockup img {
+    width: 100%;
+    transform: none;           /* 👉 기울기 제거 (모바일에서는 자연스럽게) */
+  }
+
+}
+    
     /* =====================
        Footer
     ====================== */
