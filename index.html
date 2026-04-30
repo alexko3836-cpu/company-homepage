@@ -182,6 +182,7 @@
       transform:translateY(0);
     }
 
+    
     /* =====================
        Hero
     ====================== */
@@ -770,6 +771,30 @@
   }
 
 }
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;              /* 🔥 간격 좁게 (중요) */
+  text-decoration: none;
+}
+
+.logo img {
+  height: 18px;          /* 🔥 작게 */
+}
+
+.logo span {
+  font-size: 16px;       /* 🔥 과하게 크지 않게 */
+  font-weight: 700;
+  color: #111;
+}
+
+  @media (prefers-color-scheme: dark) {
+  .logo span {
+    color: #fff;
+  }
+}  
     
     /* =====================
        Footer
@@ -1116,7 +1141,10 @@
 <header class="gnb" id="gnb">
   <div class="gnb-inner">
     <div class="gnb-logo">
-      <a href="/">Linkonomy<span>.</span></a>
+      <a href="/" class="logo">
+        <img src="/ci.png" alt="Linkonomy" />
+        <span>TimeDealing</span>
+      </a>
     </div>
 
     <nav class="gnb-menu">
