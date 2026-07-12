@@ -2,216 +2,289 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>서비스 이용약관</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이용약관 | Linkonomy</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
-    :root {
-      --bg: #ffffff;
-      --text-main: #111111;
-      --text-sub: #666666;
-      --border: #eaeaea;
-      --primary: #D71920;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    :root {
+      --bg:#08080D;
+      --bg2:#0E0E16;
+      --line:rgba(255,255,255,0.08);
+      --text:#F4F4F6;
+      --muted:#9A9AA6;
+      --red:#FF3B3B;
+      --grad-brand:linear-gradient(135deg,#FF6B4A 0%,#FF3B3B 45%,#D71920 100%);
     }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-        "Noto Sans KR", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text-main);
-      line-height: 1.7;
+      font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.75;
+      letter-spacing:-0.015em;
+      word-break:keep-all;
     }
 
-    /* ===== Header ===== */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid var(--border);
-      background: #fff;
+    a { color:inherit; text-decoration:none; }
+
+    .gnb {
+      position:sticky;
+      top:0;
+      height:72px;
+      background:rgba(8,8,13,0.8);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+      z-index:100;
     }
 
-    .back-button {
-      position: absolute;
-      left: 12px;
-      height: 36px;
-      width: 36px;
-      border-radius: 10px;
-      border: none;
-      background: #f5f5f5;
-      font-size: 18px;
-      cursor: pointer;
+    .gnb-inner {
+      max-width:860px;
+      height:100%;
+      margin:0 auto;
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    .back-button:active {
-      background: #eaeaea;
+    .gnb-logo {
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:-0.045em;
     }
 
-    .header-title {
-      font-size: 16px;
-      font-weight: 600;
+    .gnb-logo span { color:var(--red); }
+
+    .gnb-back {
+      font-size:13.5px;
+      font-weight:700;
+      color:var(--muted);
+      transition:color .2s;
     }
 
-    /* ===== Content ===== */
-    .container {
-      padding: 20px 18px 40px;
-      max-width: 720px;
-      margin: 0 auto;
+    .gnb-back:hover { color:var(--text); }
+
+    main {
+      max-width:860px;
+      margin:0 auto;
+      padding:72px 24px 110px;
+    }
+
+    .doc-kicker {
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      font-size:12.5px;
+      font-weight:900;
+      color:var(--red);
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    .doc-kicker::before {
+      content:"";
+      width:22px; height:2px;
+      background:var(--grad-brand);
+      border-radius:2px;
+    }
+
+    h1 {
+      font-size:clamp(30px, 5vw, 42px);
+      font-weight:900;
+      letter-spacing:-0.05em;
+      margin-bottom:12px;
+    }
+
+    .doc-date {
+      font-size:13.5px;
+      color:var(--muted);
+      margin-bottom:52px;
     }
 
     h2 {
-      font-size: 16px;
-      margin: 28px 0 10px;
-      font-weight: 700;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      margin:46px 0 14px;
+      padding-top:26px;
+      border-top:1px solid var(--line);
     }
 
-    p {
-      font-size: 14px;
-      margin: 0 0 10px;
+    h2:first-of-type { border-top:none; padding-top:0; }
+
+    p, li { font-size:15px; color:#C9C9D2; }
+
+    p + p { margin-top:10px; }
+
+    ol, ul { margin:10px 0 10px 22px; }
+
+    ol li, ul li { margin-bottom:7px; }
+
+    ol ol { list-style:lower-alpha; margin-top:7px; }
+
+    strong { color:var(--text); font-weight:700; }
+
+    .doc-box {
+      background:rgba(255,255,255,0.03);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:20px 24px;
+      margin:14px 0;
+      font-size:14px;
+      color:var(--muted);
     }
 
-    ul {
-      padding-left: 18px;
-      margin: 8px 0 14px;
+    footer {
+      border-top:1px solid var(--line);
+      padding:44px 24px;
+      background:var(--bg2);
     }
 
-    li {
-      font-size: 14px;
-      margin-bottom: 6px;
+    .footer-inner {
+      max-width:860px;
+      margin:0 auto;
+      font-size:12.5px;
+      color:#6E6E7A;
+      line-height:1.9;
     }
 
-    .sub {
-      color: var(--text-sub);
-      font-size: 13px;
+    .footer-inner .links {
+      margin-bottom:16px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
-    .box {
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 12px;
-      font-size: 14px;
+    .footer-inner .links a {
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
     }
 
-    @media (min-width: 768px) {
-      h2 { font-size: 17px; }
-      p, li { font-size: 15px; }
-    }
+    .footer-inner .links a:hover { color:var(--text); }
   </style>
-
-  <script>
-    function goBackSmart() {
-      // 브라우저 히스토리가 2개 이상이면 이전 페이지로
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        // 없으면 메인으로 강제 이동
-        window.location.replace("index.html");
-      }
-    }
-  </script>
 </head>
-
 <body>
-  <!-- Header -->
-  <header class="header">
-    <button class="back-button" onclick="goBackSmart()">←</button>
-    <div class="header-title">서비스 이용약관</div>
+
+  <header class="gnb">
+    <div class="gnb-inner">
+      <a href="/" class="gnb-logo">LINKONOMY<span>.</span></a>
+      <a href="/" class="gnb-back">← 홈으로</a>
+    </div>
   </header>
 
-  <!-- Content -->
-  <main class="container">
+  <main>
+    <div class="doc-kicker">Terms of Service</div>
+    <h1>이용약관</h1>
+    <p class="doc-date">시행일: 2026년 7월 12일</p>
+
     <h2>제1조 (목적)</h2>
     <p>
-      본 약관은 ‘타임딜링’ 플랫폼(이하 “플랫폼”)을 운영하는 주식회사 링코노미(이하 “회사”)가 제공하는
-      할인 딜 예약 중개 서비스(이하 “서비스”)의 이용조건, 절차 및 회사와 회원 간의
-      권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+      본 약관은 주식회사 링코노미(이하 "회사")가 운영하는 웹사이트
+      linkonomy.xyz(이하 "사이트")의 이용과 관련하여 회사와 이용자 간의
+      권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
     </p>
 
     <h2>제2조 (정의)</h2>
-    <p>① “회원”이란 본 약관에 동의하고 서비스를 이용하는 자를 말합니다.</p>
-    <p>② “딜”이란 업주가 플랫폼을 통해 회원에게 제공하는 할인권, 이용권 또는 교환권을 의미합니다.</p>
-    <p>③ “예약”이란 회원이 딜을 선택하여 가격을 선결제하고, 특정 시간대에 이용을 신청하는 행위를 말합니다.</p>
-    <p>④ “업주”란 회사와 계약을 체결하고 플랫폼에 딜을 등록·판매하는 사업자를 말합니다.</p>
-    <p>⑤ “회사”란 플랫폼을 운영·관리하며 거래를 중개하는 주체를 의미합니다.</p>
+    <ol>
+      <li>"사이트"란 회사가 회사 및 회사가 운영하는 서비스에 관한 정보를 제공하고
+        제휴·입점·투자 등의 문의를 접수하기 위해 운영하는 웹사이트(linkonomy.xyz)를 말합니다.</li>
+      <li>"이용자"란 본 약관에 따라 사이트에 접속하여 사이트가 제공하는 정보와 기능을
+        이용하는 모든 방문자를 말합니다.</li>
+      <li>"개별 서비스"란 회사가 별도의 도메인에서 운영하는 서비스
+        (운명한컷, 결(Gyeol) 등)를 말합니다.</li>
+    </ol>
 
-    <h2>제3조 (약관의 효력 및 변경)</h2>
-    <p>① 본 약관은 앱 내 게시되며, 회원이 동의함으로써 효력이 발생합니다.</p>
-    <p>② 회사는 관련 법령 또는 서비스 운영상 필요에 따라 약관을 개정할 수 있으며, 개정 시 최소 7일 전에 공지합니다.</p>
-    <p>③ 회원이 개정 약관 시행일 이후에도 서비스를 계속 이용하는 경우, 개정 약관에 동의한 것으로 봅니다.</p>
+    <h2>제3조 (약관의 게시와 개정)</h2>
+    <ol>
+      <li>회사는 본 약관의 내용을 이용자가 쉽게 알 수 있도록 사이트에 게시합니다.</li>
+      <li>회사는 「약관의 규제에 관한 법률」 등 관련 법령을 위배하지 않는 범위에서
+        본 약관을 개정할 수 있습니다.</li>
+      <li>회사가 약관을 개정할 경우 적용일자 및 개정 사유를 명시하여
+        적용일 7일 전부터 사이트에 공지합니다. 다만 이용자에게 불리한 변경의 경우
+        30일 전부터 공지합니다.</li>
+    </ol>
 
-    <h2>제4조 (이용계약의 성립)</h2>
-    <p>① 이용계약은 회원이 필수 정보를 입력하고 본 약관 및 개인정보처리방침에 동의함으로써 성립합니다.</p>
-    <p>② 회사는 다음 각 호에 해당하는 경우 가입을 제한할 수 있습니다.</p>
-    <ul>
-      <li>허위 정보 또는 타인 정보 기재</li>
-      <li>만 14세 미만인 경우</li>
-      <li>법령에 따라 서비스 이용이 제한되는 경우</li>
-    </ul>
+    <h2>제4조 (제공하는 기능)</h2>
+    <p>사이트는 다음의 기능을 무료로 제공합니다.</p>
+    <ol>
+      <li>회사 및 개별 서비스에 관한 정보 제공</li>
+      <li>제휴, 입점, 투자, 채용 등 각종 문의 접수</li>
+      <li>개별 서비스로의 링크 제공</li>
+      <li>기타 회사가 정하는 정보 제공 기능</li>
+    </ol>
 
-    <h2>제5조 (서비스 제공 및 중단)</h2>
-    <p>① 회사는 서비스 제공을 위해 합리적인 범위 내에서 최선을 다합니다.</p>
-    <p>② 다음 각 호의 사유가 있는 경우 서비스 제공이 일시 중단될 수 있습니다.</p>
-    <ul>
-      <li>시스템 점검, 교체, 장애</li>
-      <li>천재지변, 통신 장애 등 불가항력</li>
-    </ul>
-    <p>③ 회사는 서비스 중단이 발생한 경우 사전 또는 사후에 이를 공지합니다.</p>
+    <h2>제5조 (개별 서비스와의 관계)</h2>
+    <ol>
+      <li>개별 서비스의 이용에는 각 서비스에서 별도로 정하는 이용약관 및
+        개인정보처리방침이 적용됩니다.</li>
+      <li>사이트에서 개별 서비스로 이동하는 링크를 통해 발생하는 거래 및 이용 관계는
+        해당 개별 서비스의 약관을 따릅니다.</li>
+      <li>본 약관은 사이트(linkonomy.xyz)의 이용에 한하여 적용됩니다.</li>
+    </ol>
 
-    <h2>제6조 (회원의 의무)</h2>
-    <p>① 회원은 서비스 이용 시 다음 행위를 해서는 안 됩니다.</p>
-    <ul>
-      <li>허위 정보 입력 또는 타인 정보 도용</li>
-      <li>예약의 부정 이용, QR 코드의 부정 사용</li>
-      <li>플랫폼 내 콘텐츠의 무단 복제·배포</li>
-    </ul>
-    <p>② 회원이 예약 후 정당한 사유 없이 서비스를 이용하지 않는 경우(노쇼),
-      회사는 사전에 고지된 환불정책에 따라 위약금 또는 수수료를 부과할 수 있습니다.</p>
+    <h2>제6조 (지식재산권)</h2>
+    <ol>
+      <li>사이트에 게시된 텍스트, 이미지, 디자인, 로고, 영상 등 일체의 콘텐츠에 대한
+        저작권 및 지식재산권은 회사에 귀속됩니다.</li>
+      <li>이용자는 회사의 사전 서면 동의 없이 사이트의 콘텐츠를 복제, 전송, 배포,
+        출판, 방송, 기타 방법으로 이용하거나 제3자에게 이용하게 할 수 없습니다.</li>
+    </ol>
 
-    <h2>제7조 (결제 및 환불)</h2>
-    <p>① 회원은 회사가 제공하는 결제 수단을 통해 딜을 선결제합니다.</p>
-    <p>② 취소·환불 및 청약철회에 관한 사항은 관계 법령 및 회사가 별도로 정한 환불정책에 따릅니다.</p>
-    <p>③ 예약 시간 경과, 사용 완료, 노쇼 등 환불 제한 사유는 환불정책에 명시됩니다.</p>
-    <p>④ 환불 처리 시점은 결제 수단별 정책에 따라 영업일 기준 일정 기간이 소요될 수 있습니다.</p>
+    <h2>제7조 (이용자의 의무)</h2>
+    <p>이용자는 다음 각 호의 행위를 하여서는 안 됩니다.</p>
+    <ol>
+      <li>문의 접수 시 허위 정보를 기재하는 행위</li>
+      <li>사이트의 운영을 방해하거나 안정성을 해치는 행위</li>
+      <li>회사 또는 제3자의 지식재산권, 명예, 신용을 침해하는 행위</li>
+      <li>관련 법령에 위배되는 행위</li>
+    </ol>
 
-    <h2>제8조 (게시물의 저작권)</h2>
-    <p>① 회원이 작성한 게시물의 저작권은 회원에게 있습니다.</p>
-    <p>② 회원은 회사에 대해 서비스 운영 및 홍보 목적에 한하여 비독점적 사용권을 부여합니다.</p>
-    <p>③ 회사가 작성한 콘텐츠의 저작권은 회사에 있으며, 무단 사용을 금합니다.</p>
+    <h2>제8조 (면책)</h2>
+    <ol>
+      <li>회사는 천재지변, 통신 장애 등 회사의 합리적인 통제를 벗어난 사유로
+        사이트를 제공할 수 없는 경우 그에 대한 책임을 지지 않습니다.</li>
+      <li>사이트에 게시된 정보는 회사 및 서비스 소개를 위한 것으로,
+        회사는 사전 고지 없이 그 내용을 변경할 수 있습니다.</li>
+      <li>사이트에서 연결되는 외부 사이트(개별 서비스 포함)의 콘텐츠 및 거래에 대해서는
+        해당 사이트의 약관과 정책이 적용됩니다.</li>
+    </ol>
 
-    <h2>제9조 (이용 제한 및 해지)</h2>
-    <p>① 회사는 회원이 본 약관을 위반한 경우 서비스 이용을 제한하거나 계정을 해지할 수 있습니다.</p>
-    <p>② 회원은 언제든지 앱 내 설정을 통해 이용계약을 해지할 수 있으며,
-      미사용 딜은 환불정책에 따라 처리됩니다.</p>
+    <h2>제9조 (분쟁의 해결)</h2>
+    <ol>
+      <li>본 약관은 대한민국 법령에 따라 해석되고 적용됩니다.</li>
+      <li>사이트 이용과 관련하여 회사와 이용자 사이에 분쟁이 발생한 경우
+        양 당사자는 상호 협의하여 해결하도록 노력하며, 협의가 이루어지지 않을 경우
+        민사소송법에 따른 관할 법원에 제소할 수 있습니다.</li>
+    </ol>
 
-    <h2>제10조 (면책)</h2>
-    <p>① 회사는 천재지변, 통신 장애 등 불가항력으로 인한 서비스 장애에 대해 책임을 지지 않습니다.</p>
-    <p>② 회사는 플랫폼 제공자로서 거래를 중개하며,
-      업주가 제공하는 상품·서비스의 내용 및 이행에 대한 책임은 업주에게 있습니다.
-      단, 회사의 고의 또는 중대한 과실이 있는 경우는 예외로 합니다.</p>
+    <h2>부칙</h2>
+    <p>본 약관은 2026년 7월 12일부터 시행합니다.</p>
 
-    <h2>제11조 (준거법 및 관할)</h2>
-    <p>① 본 약관은 대한민국 법률을 준거법으로 합니다.</p>
-    <p>② 서비스 이용과 관련한 분쟁은 민사소송법상 관할 법원을 제1심 법원으로 합니다.</p>
-
-    <h2>제12조 (고지 및 문의)</h2>
-    <div class="box">
-      서비스 관련 문의는 앱 내 고객센터 또는<br />
-      이메일 <strong>admin@timedealing.com</strong> 을 통해 접수할 수 있습니다.
+    <div class="doc-box">
+      문의: contact@linkonomy.xyz &nbsp;|&nbsp; 070-8983-5965
     </div>
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="links">
+        <a href="/terms.html">이용약관</a>
+        <a href="/privacy.html">개인정보처리방침</a>
+      </div>
+      주식회사 링코노미 (Linkonomy Inc.) &nbsp;|&nbsp; 대표자: 고영권<br />
+      사업자등록번호: 694-87-03856 &nbsp;|&nbsp; 통신판매업 신고번호: 제 2026-대전유성-0225 호<br />
+      주소: 대전광역시 유성구 계룡로16번길 6, 2층 202호<br />
+      © 2026 Linkonomy Inc. All rights reserved.
+    </div>
+  </footer>
+
 </body>
 </html>
-
-

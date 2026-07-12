@@ -2,242 +2,368 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>개인정보처리방침</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>개인정보처리방침 | Linkonomy</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
-    :root {
-      --bg: #ffffff;
-      --text-main: #111111;
-      --text-sub: #666666;
-      --border: #eaeaea;
-      --primary: #D71920;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    :root {
+      --bg:#08080D;
+      --bg2:#0E0E16;
+      --line:rgba(255,255,255,0.08);
+      --text:#F4F4F6;
+      --muted:#9A9AA6;
+      --red:#FF3B3B;
+      --grad-brand:linear-gradient(135deg,#FF6B4A 0%,#FF3B3B 45%,#D71920 100%);
     }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-        "Noto Sans KR", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text-main);
-      line-height: 1.7;
+      font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.75;
+      letter-spacing:-0.015em;
+      word-break:keep-all;
     }
 
-    /* ===== Header ===== */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid var(--border);
-      background: #fff;
+    a { color:inherit; text-decoration:none; }
+
+    .gnb {
+      position:sticky;
+      top:0;
+      height:72px;
+      background:rgba(8,8,13,0.8);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+      z-index:100;
     }
 
-    .back-button {
-      position: absolute;
-      left: 12px;
-      height: 36px;
-      width: 36px;
-      border-radius: 10px;
-      border: none;
-      background: #f5f5f5;
-      font-size: 18px;
-      cursor: pointer;
+    .gnb-inner {
+      max-width:860px;
+      height:100%;
+      margin:0 auto;
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    .back-button:active {
-      background: #eaeaea;
+    .gnb-logo {
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:-0.045em;
     }
 
-    .header-title {
-      font-size: 16px;
-      font-weight: 600;
+    .gnb-logo span { color:var(--red); }
+
+    .gnb-back {
+      font-size:13.5px;
+      font-weight:700;
+      color:var(--muted);
+      transition:color .2s;
     }
 
-    /* ===== Content ===== */
-    .container {
-      padding: 20px 18px 40px;
-      max-width: 720px;
-      margin: 0 auto;
+    .gnb-back:hover { color:var(--text); }
+
+    main {
+      max-width:860px;
+      margin:0 auto;
+      padding:72px 24px 110px;
+    }
+
+    .doc-kicker {
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      font-size:12.5px;
+      font-weight:900;
+      color:var(--red);
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    .doc-kicker::before {
+      content:"";
+      width:22px; height:2px;
+      background:var(--grad-brand);
+      border-radius:2px;
+    }
+
+    h1 {
+      font-size:clamp(30px, 5vw, 42px);
+      font-weight:900;
+      letter-spacing:-0.05em;
+      margin-bottom:12px;
+    }
+
+    .doc-date {
+      font-size:13.5px;
+      color:var(--muted);
+      margin-bottom:52px;
     }
 
     h2 {
-      font-size: 16px;
-      margin: 28px 0 10px;
-      font-weight: 700;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      margin:46px 0 14px;
+      padding-top:26px;
+      border-top:1px solid var(--line);
     }
 
-    p {
-      font-size: 14px;
-      margin: 0 0 10px;
+    h2:first-of-type { border-top:none; padding-top:0; }
+
+    p, li, td, th { font-size:15px; color:#C9C9D2; }
+
+    p + p { margin-top:10px; }
+
+    ol, ul { margin:10px 0 10px 22px; }
+
+    ol li, ul li { margin-bottom:7px; }
+
+    strong { color:var(--text); font-weight:700; }
+
+    table {
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0;
+      font-size:14px;
     }
 
-    ul {
-      padding-left: 18px;
-      margin: 8px 0 14px;
+    th, td {
+      border:1px solid var(--line);
+      padding:12px 16px;
+      text-align:left;
+      vertical-align:top;
     }
 
-    li {
-      font-size: 14px;
-      margin-bottom: 6px;
+    th {
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      font-weight:700;
+      white-space:nowrap;
     }
 
-    .sub {
-      color: var(--text-sub);
-      font-size: 13px;
+    .doc-box {
+      background:rgba(255,255,255,0.03);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:20px 24px;
+      margin:14px 0;
+      font-size:14px;
+      color:var(--muted);
     }
 
-    .box {
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 12px;
-      font-size: 14px;
+    .doc-box b { color:var(--text); }
+
+    footer {
+      border-top:1px solid var(--line);
+      padding:44px 24px;
+      background:var(--bg2);
     }
 
-    .box strong {
-      display: block;
-      margin-bottom: 6px;
+    .footer-inner {
+      max-width:860px;
+      margin:0 auto;
+      font-size:12.5px;
+      color:#6E6E7A;
+      line-height:1.9;
     }
 
-    @media (min-width: 768px) {
-      h2 { font-size: 17px; }
-      p, li { font-size: 15px; }
+    .footer-inner .links {
+      margin-bottom:16px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
     }
-  </style>
 
-  <script>
-    function goBackSmart() {
-      // 브라우저 히스토리가 2개 이상이면 이전 페이지로
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        // 없으면 메인으로 강제 이동
-        window.location.replace("index.html");
+    .footer-inner .links a {
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .footer-inner .links a:hover { color:var(--text); }
+
+    @media (max-width:640px) {
+      table, thead, tbody, tr { display:block; }
+      thead { display:none; }
+      td {
+        display:block;
+        border:none;
+        border-bottom:1px solid var(--line);
+        padding:10px 4px;
+      }
+      tr { border:1px solid var(--line); border-radius:12px; margin-bottom:12px; padding:6px 12px; }
+      td::before {
+        content:attr(data-label);
+        display:block;
+        font-size:12px;
+        font-weight:800;
+        color:var(--muted);
+        margin-bottom:2px;
       }
     }
-  </script>
+  </style>
 </head>
-
 <body>
-  <!-- Header -->
-  <header class="header">
-    <button class="back-button" onclick="goBackSmart()">←</button>
-    <div class="header-title">개인정보처리방침</div>
+
+  <header class="gnb">
+    <div class="gnb-inner">
+      <a href="/" class="gnb-logo">LINKONOMY<span>.</span></a>
+      <a href="/" class="gnb-back">← 홈으로</a>
+    </div>
   </header>
 
-  <!-- Content -->
-  <main class="container">
-    <h2>제1조 (목적)</h2>
+  <main>
+    <div class="doc-kicker">Privacy Policy</div>
+    <h1>개인정보처리방침</h1>
+    <p class="doc-date">시행일: 2026년 7월 12일</p>
+
     <p>
-      본 개인정보처리방침은 ‘타임딜링’ 플랫폼(이하 “플랫폼”)을 운영하는 주식회사 링코노미(이하 “회사”)가
-      할인 딜 예약 플랫폼 서비스(이하 “서비스”) 이용과 관련하여, 회원의 개인정보를 수집·이용·보관·파기함에 있어
-      적용되는 기준과 회원의 권리 보호에 관한 사항을 규정함을 목적으로 합니다.
+      주식회사 링코노미(이하 "회사")는 「개인정보 보호법」 등 관련 법령을 준수하며,
+      정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록
+      다음과 같이 개인정보처리방침을 수립·공개합니다.
+    </p>
+    <div class="doc-box">
+      본 방침은 회사 웹사이트 <b>linkonomy.xyz</b>에 적용됩니다.
+      회사가 운영하는 개별 서비스(운명한컷, 결(Gyeol) 등)는
+      각 서비스에서 별도로 공개하는 개인정보처리방침이 적용됩니다.
+    </div>
+
+    <h2>제1조 (개인정보의 처리 목적, 항목 및 보유 기간)</h2>
+    <p>
+      회사는 사이트에서 다음의 개인정보를 처리합니다.
+      수집된 개인정보는 아래 목적 이외의 용도로는 이용되지 않으며,
+      처리 목적이 변경되는 경우 별도의 동의를 받는 등 필요한 조치를 이행합니다.
+    </p>
+    <table>
+      <thead>
+        <tr><th>구분</th><th>수집 항목</th><th>처리 목적</th><th>보유 기간</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="구분">제휴/서비스 문의</td>
+          <td data-label="수집 항목">회사명, 담당자명, 이메일, 연락처, 문의 내용</td>
+          <td data-label="처리 목적">문의 대응 및 서비스 안내</td>
+          <td data-label="보유 기간">문의 처리 완료 후 3개월 보관 후 파기</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      사이트는 회원가입 기능을 운영하지 않으며, 문의 접수 외의 목적으로
+      개인정보를 수집하지 않습니다.
     </p>
 
-    <h2>제2조 (수집하는 개인정보 항목)</h2>
-    <p><strong>1. 필수 수집 항목</strong></p>
-    <ul>
-      <li>회원가입 시: 이름(닉네임), 휴대전화번호, 이메일</li>
-      <li>결제 시: 결제수단 정보(카드사명, 카드번호 일부, 승인번호)</li>
-      <li>예약 시: 예약 내역, 이용 시간, 매장 정보</li>
-    </ul>
+    <h2>제2조 (개인정보의 수집 방법)</h2>
+    <p>회사는 사이트의 문의 양식을 통해 정보주체가 직접 입력하는 방식으로 개인정보를 수집합니다.</p>
 
-    <p><strong>2. 선택 수집 항목</strong></p>
-    <ul>
-      <li>프로필 사진</li>
-      <li>마케팅 정보 수신 동의 시: 푸시·알림 수신 기록</li>
-    </ul>
+    <h2>제3조 (개인정보의 제3자 제공)</h2>
+    <p>
+      회사는 정보주체의 개인정보를 제1조에서 명시한 범위 내에서만 처리하며,
+      정보주체의 동의 또는 법률의 특별한 규정 등 「개인정보 보호법」 제17조에
+      해당하는 경우를 제외하고는 제3자에게 제공하지 않습니다.
+    </p>
 
-    <p><strong>3. 자동 수집 항목</strong></p>
-    <ul>
-      <li>기기 정보(OS, 단말기 모델, 앱 버전)</li>
-      <li>접속 로그, IP 주소</li>
-      <li>위치정보(GPS, Wi-Fi, 기지국 정보)</li>
-    </ul>
-    <p class="sub">※ 위치정보는 이용자가 동의한 경우에 한하여 수집됩니다.</p>
+    <h2>제4조 (개인정보 처리의 위탁)</h2>
+    <p>회사는 원활한 업무 처리를 위해 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+    <table>
+      <thead>
+        <tr><th>수탁자</th><th>위탁 업무</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="수탁자">Cloudflare, Inc.</td>
+          <td data-label="위탁 업무">문의 접수 데이터의 전송 및 처리 인프라 운영</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      회사는 위탁계약 체결 시 「개인정보 보호법」 제26조에 따라 개인정보 보호 관련
+      의무 이행을 명확히 하고, 수탁자가 개인정보를 안전하게 처리하는지를 감독합니다.
+    </p>
 
-    <h2>제3조 (개인정보의 이용 목적)</h2>
-    <ul>
-      <li>회원 관리: 본인 확인, 계정 관리, 부정 이용 방지</li>
-      <li>서비스 제공: 예약 확인, 결제 처리, 딜 이용 인증(QR코드 발급 등)</li>
-      <li>고객 지원: 문의·불만 처리, 공지 전달</li>
-      <li>마케팅·광고(선택 동의 시): 할인 이벤트, 신규 딜 안내</li>
-      <li>서비스 개선: 이용 통계 분석, 서비스 품질 향상</li>
-    </ul>
+    <h2>제5조 (개인정보의 파기)</h2>
+    <ol>
+      <li>회사는 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가 불필요하게
+        되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</li>
+      <li>전자적 파일 형태의 정보는 복구할 수 없는 방법으로 영구 삭제하며,
+        종이 문서는 분쇄하거나 소각하여 파기합니다.</li>
+    </ol>
 
-    <h2>제4조 (개인정보 보유 및 이용기간)</h2>
-    <p>회사는 개인정보의 수집·이용 목적이 달성된 후 지체 없이 파기합니다.</p>
-    <ul>
-      <li>계약 또는 청약철회 기록: 5년 (전자상거래법)</li>
-      <li>대금 결제 및 재화 공급 기록: 5년 (전자상거래법)</li>
-      <li>소비자 불만 및 분쟁처리 기록: 3년 (전자상거래법)</li>
-      <li>접속 로그, IP 주소: 3개월 (통신비밀보호법)</li>
-    </ul>
+    <h2>제6조 (정보주체의 권리·의무 및 행사 방법)</h2>
+    <ol>
+      <li>정보주체는 회사에 대해 언제든지 개인정보의 열람, 정정·삭제,
+        처리정지 요구 등의 권리를 행사할 수 있습니다.</li>
+      <li>권리 행사는 이메일(contact@linkonomy.xyz)을 통해 하실 수 있으며,
+        회사는 지체 없이 조치하겠습니다.</li>
+      <li>권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통해서도
+        할 수 있습니다. 이 경우 적법한 위임 관계를 확인할 수 있는 서류를 제출해야 합니다.</li>
+    </ol>
 
-    <h2>제5조 (개인정보의 제3자 제공)</h2>
-    <p>회사는 원칙적으로 이용자의 개인정보를 외부에 제공하지 않습니다.</p>
-    <ul>
-      <li>법령에 근거하거나 수사기관의 적법한 요청이 있는 경우</li>
-      <li>이용자의 사전 동의를 받은 경우</li>
-    </ul>
+    <h2>제7조 (개인정보의 안전성 확보 조치)</h2>
+    <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.</p>
+    <ol>
+      <li>관리적 조치: 개인정보 취급자 최소화 및 교육</li>
+      <li>기술적 조치: 전송 구간 암호화(HTTPS), 접근 권한 관리</li>
+      <li>물리적 조치: 개인정보 보관 장소의 접근 통제</li>
+    </ol>
 
-    <h2>제6조 (개인정보 처리의 위탁)</h2>
-    <ul>
-      <li>결제 대행: ○○ PG사 (결제 및 환불 처리)</li>
-      <li>알림 발송: ○○ 알림 서비스사</li>
-      <li>클라우드 서버: AWS 또는 GCP</li>
-    </ul>
+    <h2>제8조 (쿠키 등 자동 수집 장치)</h2>
+    <p>
+      사이트는 회원 식별을 위한 쿠키를 사용하지 않습니다.
+      서비스 개선을 위한 접속 통계 분석 도구를 도입하는 경우
+      본 방침을 통해 그 내용을 공개합니다.
+    </p>
 
-    <h2>제7조 (개인정보 파기 절차 및 방법)</h2>
-    <ul>
-      <li>전자적 파일: 복구 불가능한 기술적 방법으로 삭제</li>
-      <li>종이 문서: 분쇄 또는 소각</li>
-    </ul>
-
-    <h2>제8조 (이용자의 권리)</h2>
-    <ul>
-      <li>개인정보 열람, 정정, 삭제, 처리정지, 동의 철회 요청 가능</li>
-      <li>앱 설정, 고객센터, 이메일을 통해 행사 가능</li>
-    </ul>
-
-    <h2>제9조 (쿠키 등 자동 수집 장치)</h2>
-    <p>이용자는 브라우저 또는 앱 설정을 통해 쿠키 저장을 거부할 수 있습니다.</p>
-
-    <h2>제10조 (개인정보의 안전성 확보 조치)</h2>
-    <ul>
-      <li>기술적 조치: TLS 암호화, 방화벽, 보안 프로그램</li>
-      <li>관리적 조치: 접근 권한 최소화, 정기 교육</li>
-    </ul>
-
-    <h2>제11조 (미성년자 보호)</h2>
-    <p>회사는 만 14세 미만 아동의 개인정보를 수집하지 않습니다.</p>
-
-    <h2>제12조 (개인정보처리방침의 변경)</h2>
-    <p>변경 시 최소 7일 전 앱 내 공지 또는 이메일로 안내합니다.</p>
-
-    <h2>제13조 (개인정보 보호책임자)</h2>
-    <div class="box">
-      <strong>개인정보보호책임자 (CPO)</strong>
-      성명: 고영권<br />
-      이메일: admin@timedealing.com
+    <h2>제9조 (개인정보 보호책임자)</h2>
+    <p>
+      회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한
+      정보주체의 불만 처리 및 피해 구제 등을 위하여 아래와 같이 개인정보 보호책임자를
+      지정하고 있습니다.
+    </p>
+    <div class="doc-box">
+      <b>개인정보 보호책임자</b><br />
+      성명: 고영권 (대표이사)<br />
+      이메일: contact@linkonomy.xyz<br />
+      전화: 070-8983-5965
     </div>
+    <p>
+      기타 개인정보 침해에 대한 신고나 상담이 필요한 경우 아래 기관에 문의하실 수 있습니다.
+    </p>
+    <ul>
+      <li>개인정보침해신고센터 (privacy.kisa.or.kr / 국번없이 118)</li>
+      <li>개인정보분쟁조정위원회 (kopico.go.kr / 1833-6972)</li>
+      <li>대검찰청 사이버수사과 (spo.go.kr / 국번없이 1301)</li>
+      <li>경찰청 사이버수사국 (ecrm.police.go.kr / 국번없이 182)</li>
+    </ul>
 
-    <div class="box">
-      <strong>개인정보 침해 신고</strong>
-      한국인터넷진흥원: 국번 없이 118<br />
-      개인정보분쟁조정위원회: 1833-6972
-    </div>
+    <h2>제10조 (개인정보처리방침의 변경)</h2>
+    <p>
+      본 방침은 2026년 7월 12일부터 적용됩니다.
+      법령·정책 또는 회사 내부 방침의 변경에 따라 내용이 추가, 삭제, 수정되는 경우
+      변경 사항의 시행 7일 전부터 사이트를 통해 공지합니다.
+    </p>
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="links">
+        <a href="/terms.html">이용약관</a>
+        <a href="/privacy.html">개인정보처리방침</a>
+      </div>
+      주식회사 링코노미 (Linkonomy Inc.) &nbsp;|&nbsp; 대표자: 고영권<br />
+      사업자등록번호: 694-87-03856 &nbsp;|&nbsp; 통신판매업 신고번호: 제 2026-대전유성-0225 호<br />
+      주소: 대전광역시 유성구 계룡로16번길 6, 2층 202호<br />
+      © 2026 Linkonomy Inc. All rights reserved.
+    </div>
+  </footer>
+
 </body>
 </html>
-
