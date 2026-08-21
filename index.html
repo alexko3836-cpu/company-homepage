@@ -459,8 +459,9 @@
     ============================================================ */
     section { padding:140px 24px; position:relative; }
 
-    /* 화면 밖 섹션은 렌더링을 미뤄 초기 로딩 단축 */
-    #about, #services, #roadmap, #contact, footer {
+    /* 화면 밖 섹션은 렌더링을 미뤄 초기 로딩 단축
+       (footer 제외: 페인트 컨테인먼트가 패밀리 사이트 드롭다운을 잘라냄) */
+    #about, #services, #roadmap, #contact {
       content-visibility:auto;
       contain-intrinsic-size:auto 900px;
     }
