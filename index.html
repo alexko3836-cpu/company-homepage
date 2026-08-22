@@ -706,20 +706,20 @@
     }
 
     .feature-list li {
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
+      position:relative;
+      padding-left:19px;
       font-size:14px;
       color:#C9C9D2;
-      line-height:1.45;
+      line-height:1.55;
     }
 
     .feature-list li::before {
       content:"✦";
+      position:absolute;
+      left:0;
+      top:2px;
       color:var(--accent);
       font-size:11px;
-      margin-top:3px;
-      flex-shrink:0;
     }
 
     .feature-list li b { color:var(--text); font-weight:700; }
@@ -1370,6 +1370,15 @@
     @media (max-width: 760px) {
       section { padding:100px 20px; }
 
+      /* 히어로 내용이 고정 헤더(72px) 아래에서 시작하도록 */
+      .hero {
+        align-items:flex-start;
+        padding:104px 20px 92px;
+      }
+
+      /* 기능 리스트 줄간격 여유 */
+      .feature-list { gap:13px; }
+
       /* ===== 모바일 성능 최적화 ===== */
       /* 대형 blur 레이어 축소 + 상시 애니메이션 제거 */
       .hero-glow { filter:blur(60px); animation:none; }
@@ -1457,7 +1466,7 @@
   <!-- ===== Hero ===== -->
   <!-- 배경은 캔버스 파티클 애니메이션. 브랜드 영상이 준비되면 아래 캔버스 대신
        <video autoplay muted loop playsinline> 를 같은 위치에 넣으면 됩니다. -->
-  <section class="hero" id="top" style="padding-top:0;">
+  <section class="hero" id="top">
     <canvas id="heroCanvas"></canvas>
     <div class="hero-glow g1"></div>
     <div class="hero-glow g2"></div>
