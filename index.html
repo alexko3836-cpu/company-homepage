@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>링코노미 Linkonomy | 연결이 경제가 되는 순간</title>
-  <meta name="description" content="주식회사 링코노미는 AI로 사람과 기회를 잇는 프로덕트 컴퍼니입니다. 업무 자동화 대행 잔무제로, AI 운세 분석 운명한컷, AI 네이버 블로그 글쓰기 결AI를 만들고 있습니다." />
+  <meta name="description" content="주식회사 링코노미는 AI로 사람과 기회를 잇는 프로덕트 컴퍼니입니다. 업무 자동화 대행 잔무제로, AI 운세 분석 운명한컷, AI 네이버 블로그 글쓰기 결AI를 운영합니다." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Linkonomy Inc." />
   <meta name="theme-color" content="#08080D" />
@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="Linkonomy" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:title" content="링코노미 Linkonomy | 연결이 경제가 되는 순간" />
-  <meta property="og:description" content="AI로 사람과 기회를 잇는 프로덕트 컴퍼니. 업무 자동화 잔무제로, AI 운세 분석 운명한컷, AI 블로그 글쓰기 결AI를 만듭니다." />
+  <meta property="og:description" content="AI로 사람과 기회를 잇는 프로덕트 컴퍼니. 업무 자동화 잔무제로, AI 운세 분석 운명한컷, AI 블로그 글쓰기 결AI를 서비스합니다." />
   <meta property="og:url" content="https://linkonomy.xyz/" />
   <meta property="og:image" content="https://linkonomy.xyz/og.png" />
   <meta property="og:image:width" content="1200" />
@@ -25,7 +25,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="링코노미 Linkonomy | 연결이 경제가 되는 순간" />
-  <meta name="twitter:description" content="AI로 사람과 기회를 잇는 프로덕트 컴퍼니. 잔무제로, 운명한컷, 결AI를 만듭니다." />
+  <meta name="twitter:description" content="AI로 사람과 기회를 잇는 프로덕트 컴퍼니. 잔무제로, 운명한컷, 결AI를 서비스합니다." />
   <meta name="twitter:image" content="https://linkonomy.xyz/og.png" />
 
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -91,10 +91,18 @@
       {
         "@type": "SoftwareApplication",
         "name": "결AI",
+        "alternateName": "gyeolAI",
         "url": "https://www.gyeolai.com/",
         "applicationCategory": "ProductivityApplication",
-        "operatingSystem": "Web",
-        "description": "사용자의 문체를 학습해 네이버 블로그 글을 대신 쓰는 AI 서비스. 문체 학습, AI 이미지 생성, 글감 수집, 크롬 확장 원클릭 삽입을 제공합니다. 2026년 3분기 오픈 예정.",
+        "operatingSystem": "Web, iOS, Android",
+        "datePublished": "2026-09-13",
+        "description": "사용자의 문체를 학습해 네이버 블로그 글 초안을 만드는 AI 서비스. 실시간 이슈마다 검색량과 블로그 문서 수를 공식 API로 재서 기회지수로 주제를 고르고, 언론사·정부 보도자료에서 글감을 모읍니다. 본문에 맞는 썸네일 자동 생성, 사진 기반 후기 작성, 협찬·체험단 고지 자동 삽입과 Word 저장, 크롬 확장 원클릭 삽입을 제공합니다. 발행은 사용자가 직접 합니다.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "KRW",
+          "description": "무료 플랜 제공 (월 2편)"
+        },
         "creator": { "@id": "https://linkonomy.xyz/#org" }
       }
     ]
@@ -662,6 +670,12 @@
       border:1px solid rgba(232,181,77,0.35);
     }
 
+    .badge-new {
+      background:rgba(255,59,59,0.12);
+      color:#FF6B4A;
+      border:1px solid rgba(255,59,59,0.35);
+    }
+
     .badge-cat {
       background:rgba(255,255,255,0.05);
       color:var(--muted);
@@ -750,6 +764,31 @@
     }
 
     .btn-disabled:hover { transform:none; }
+
+    /* 설치처 한 줄 — 스토어 배지 이미지는 상표물이라 쓰지 않고 글자로 둔다 */
+    .service-stores {
+      margin-top:14px;
+      font-size:12.5px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .service-stores a {
+      color:#C9C9D2;
+      font-weight:700;
+      border-bottom:1px solid rgba(255,255,255,0.18);
+      transition:color .2s, border-color .2s;
+    }
+
+    .service-stores a:hover {
+      color:#fff;
+      border-color:color-mix(in srgb, var(--accent) 60%, transparent);
+    }
+
+    .service-stores .sep { opacity:.4; }
 
     /* Service visual */
     .service-visual {
@@ -1498,7 +1537,7 @@
 
       <div class="hero-stats">
         <div class="hero-stat"><b>3</b><span>프로덕트 라인</span></div>
-        <div class="hero-stat"><b>2</b><span>라이브 서비스</span></div>
+        <div class="hero-stat"><b>3</b><span>라이브 서비스</span></div>
         <div class="hero-stat"><b>∞</b><span>다음 연결</span></div>
       </div>
     </div>
@@ -1554,6 +1593,52 @@
 
       <div class="service-list">
 
+        <!-- 결AI : 2026-09-13 정식 오픈 (웹 · iOS · Android · 크롬 확장) -->
+        <article class="service-card teal reveal">
+          <div class="service-info">
+            <div class="service-badges">
+              <span class="badge badge-live">Live</span>
+              <span class="badge badge-new">New</span>
+              <span class="badge badge-cat">AI 블로그 글쓰기</span>
+            </div>
+            <h3>결AI <small>gyeolai.com</small></h3>
+            <p class="service-tagline">"내 문체 그대로, 네이버 블로그 초안이 나옵니다."</p>
+            <p class="service-desc">
+              블로그 글은 두 곳에서 멈춥니다. 뭘 쓸지 몰라서 한 번, 써놓고 검색에 걸릴 글인지 몰라서 또 한 번.
+              결AI는 실시간 이슈마다 검색량과 블로그 문서 수를 공식 API로 재서 기회지수로 주제를 고르고,
+              사용자의 기존 글에서 말투·어미·이모지 습관까지 학습해 초안을 만듭니다.
+              <strong style="color:var(--teal);">웹 · iOS · Android · 크롬 확장으로 이용하실 수 있습니다.</strong>
+            </p>
+            <ul class="feature-list">
+              <li><b>기회지수 탐색</b> - 검색량 ÷ 블로그 문서 수로 지금 쓸 주제 선정</li>
+              <li><b>글감 수집</b> - 언론사 11곳 · 정부 8곳 보도자료에서 자동 수집</li>
+              <li><b>문체 학습</b> - 내 글 두세 편이면 그 말투로 초안 생성</li>
+              <li><b>썸네일 자동 생성</b> - 본문을 읽고 그 글에 맞는 이미지를</li>
+              <li><b>사진 후기</b> - 장소·제품 자동 인식, 키워드 몇 개면 후기 완성</li>
+              <li><b>협찬·체험단</b> - 고지 문구 자동 삽입 + Word 문서 저장</li>
+            </ul>
+            <div class="service-cta">
+              <a href="https://www.gyeolai.com/" target="_blank" rel="noopener" class="btn btn-service">결AI 바로가기 ↗</a>
+            </div>
+            <p class="service-stores">
+              설치:
+              <a href="https://apps.apple.com/kr/app/id6807294802" target="_blank" rel="noopener">App Store</a>
+              <span class="sep">·</span>
+              <a href="https://play.google.com/store/apps/details?id=xyz.linkonomy.gyeol" target="_blank" rel="noopener">Google Play</a>
+              <span class="sep">·</span>
+              <a href="https://chromewebstore.google.com/detail/%EA%B2%B0ai-%E2%80%94-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%8F%84%EC%9A%B0%EB%AF%B8/odpgenlpleknbceedhlbnnpaoehmpbek" target="_blank" rel="noopener">크롬 확장</a>
+              <span class="sep">·</span>
+              스토어에서 <b>결AI</b> 검색
+            </p>
+          </div>
+          <div class="service-visual">
+            <div class="orb o1"></div>
+            <div class="orb o2"></div>
+            <div class="orb o3"></div>
+            <div class="service-glyph">결AI<small>GYEOLAI</small></div>
+          </div>
+        </article>
+
         <!-- 운명한컷 -->
         <article class="service-card violet reveal">
           <div class="service-info">
@@ -1589,7 +1674,7 @@
         <article class="service-card blue reveal">
           <div class="service-info">
             <div class="service-badges">
-              <span class="badge badge-live">Now Open</span>
+              <span class="badge badge-live">LAUNCHED · 2026.07</span>
               <span class="badge badge-cat">업무 자동화 대행</span>
             </div>
             <h3>잔무제로 <small>janmuzero.com</small></h3>
@@ -1614,38 +1699,6 @@
             <div class="orb o2"></div>
             <div class="orb o3"></div>
             <div class="service-glyph">잔무<small>JANMUZERO</small></div>
-          </div>
-        </article>
-
-        <!-- 결AI -->
-        <article class="service-card teal reveal">
-          <div class="service-info">
-            <div class="service-badges">
-              <span class="badge badge-soon">Coming Soon · 2026 3분기</span>
-              <span class="badge badge-cat">AI 블로그 글쓰기</span>
-            </div>
-            <h3>결AI <small>gyeolai.com</small></h3>
-            <p class="service-tagline">"내 문체 그대로, AI가 네이버 블로그를 대신 씁니다."</p>
-            <p class="service-desc">
-              기존 글에서 말투와 어미, 이모지 습관까지 학습해 광고 같지 않은 진짜 내 글을 만듭니다.
-              자동발행 대신 사용자가 직접 발행하는, 리스크 없이 편리함만 남긴 설계입니다.
-              <strong style="color:var(--gold);">2026년 3분기 중 오픈 예정입니다.</strong>
-            </p>
-            <ul class="feature-list">
-              <li><b>문체 학습</b> - 내 글의 톤앤매너를 자동 분석</li>
-              <li><b>AI 이미지 생성</b> - 12가지 스타일의 썸네일·본문 이미지</li>
-              <li><b>글감 수집</b> - 뉴스·트렌드·보도자료에서 소재 자동 수집</li>
-              <li><b>원클릭 삽입</b> - 크롬 확장으로 제목·본문·사진을 한 번에</li>
-            </ul>
-            <div class="service-cta">
-              <a href="https://www.gyeolai.com/" target="_blank" rel="noopener" class="btn btn-service">미리 둘러보기 ↗</a>
-            </div>
-          </div>
-          <div class="service-visual">
-            <div class="orb o1"></div>
-            <div class="orb o2"></div>
-            <div class="orb o3"></div>
-            <div class="service-glyph">결AI<small>GYEOLAI</small></div>
           </div>
         </article>
 
@@ -1700,7 +1753,7 @@
       <div class="roadmap reveal">
         <div class="roadmap-item done">
           <div class="node"></div>
-          <span class="tag">LAUNCHED</span>
+          <span class="tag">LAUNCHED · 2026.08</span>
           <h3>운명한컷</h3>
           <p>AI 통합 운세 분석 서비스 정식 출시</p>
         </div>
@@ -1710,16 +1763,16 @@
           <h3>잔무제로</h3>
           <p>중소기업 업무 자동화 대행, 무료 진단 접수 중</p>
         </div>
-        <div class="roadmap-item now">
+        <div class="roadmap-item done">
           <div class="node"></div>
-          <span class="tag">2026 3분기 오픈 예정</span>
+          <span class="tag">LAUNCHED · 2026.08</span>
           <h3>결AI</h3>
-          <p>AI 네이버 블로그 글쓰기, 오픈 준비 중</p>
+          <p>AI 네이버 블로그 글쓰기, 웹·앱·크롬 확장 출시</p>
         </div>
         <!-- 타임딜링 : 출시 전까지 숨김 처리. 공개 시 주석 해제 후
-             .roadmap CSS의 grid-template-columns를 repeat(4,1fr)로,
-             .roadmap::before의 left를 12.5%, width를 75%로 되돌리세요.
-        <div class="roadmap-item">
+             .roadmap CSS의 grid-template-columns를 repeat(5,1fr)로,
+             .roadmap::before의 left를 10%, width를 80%로 조정하세요.
+        <div class="roadmap-item now">
           <div class="node"></div>
           <span class="tag">NEXT</span>
           <h3>타임딜링</h3>
@@ -1837,6 +1890,12 @@
             </button>
             <ul class="family-menu">
               <li>
+                <a href="https://www.gyeolai.com/" target="_blank" rel="noopener">
+                  결AI <small>gyeolai.com</small>
+                  <span class="arrow">↗</span>
+                </a>
+              </li>
+              <li>
                 <a href="https://unmyeong.xyz/" target="_blank" rel="noopener">
                   운명한컷 <small>unmyeong.xyz</small>
                   <span class="arrow">↗</span>
@@ -1845,12 +1904,6 @@
               <li>
                 <a href="https://www.janmuzero.com/" target="_blank" rel="noopener">
                   잔무제로 <small>janmuzero.com</small>
-                  <span class="arrow">↗</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.gyeolai.com/" target="_blank" rel="noopener">
-                  결AI <small>gyeolai.com</small>
                   <span class="arrow">↗</span>
                 </a>
               </li>
