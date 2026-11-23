@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "appId": "com.prototype.balancedsuitcase",
+  "android": { "minimumVersion": "1.4.1" },
+  "ios": { "minimumVersion": "1.4.1" }
+}

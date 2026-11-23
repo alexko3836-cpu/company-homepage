@@ -1,0 +1,17 @@
+:root {
+  color-scheme: light;
+  color: #213f39;
+  background: #f6f1e7;
+  font-family: system-ui, sans-serif;
+  line-height: 1.65;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100% - 2.5rem, 44rem); margin: 0 auto; padding: 3rem 0; overflow-wrap: anywhere; }
+h1 { margin: 0 0 1rem; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.2; }
+h2 { margin: 2rem 0 .5rem; font-size: 1.25rem; }
+p { margin: 0 0 .85rem; }
+.publisher { font-weight: 700; margin-bottom: .55rem; color: #42685c; }
+a { color: #205b4e; text-underline-offset: .18em; }
+.action { display: inline-block; font-weight: 700; padding: .65rem 0; }
+footer { margin-top: 2.75rem; padding-top: 1rem; border-top: 1px solid #b9c5b3; }

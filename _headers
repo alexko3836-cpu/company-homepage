@@ -1,0 +1,5 @@
+/pack-a-little/update-policy.json
+  ! Access-Control-Allow-Origin
+  ! Cache-Control
+  Access-Control-Allow-Origin: *
+  Cache-Control: no-store
