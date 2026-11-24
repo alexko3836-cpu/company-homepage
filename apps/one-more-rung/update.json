@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "appId": "xyz.linkonomy.onemorerung",
+  "android": { "minimumVersionCode": 1 },
+  "ios": {
+    "minimumVersionName": "3.0.0",
+    "appStoreId": "6838572484",
+    "storefronts": { "KOR": "KR", "USA": "US" }
+  }
+}
