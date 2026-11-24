@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "appId": "xyz.linkonomy.fortressbreaker",
+  "channels": {
+    "testing": {
+      "android": {"minimumBuild": 1,"availableBuild": 1,"available": false,"expiresAt": "2027-02-24T00:00:00Z","url": "https://play.google.com/apps/internaltest/4701575193619770313"},
+      "ios": {"minimumBuild": 1,"availableBuild": 1,"available": false,"expiresAt": "2027-02-24T00:00:00Z","url": ""}
+    },
+    "production": {
+      "android": {"minimumBuild": 1,"availableBuild": 1,"available": false,"expiresAt": "2027-02-24T00:00:00Z","url": "https://play.google.com/store/apps/details?id=xyz.linkonomy.fortressbreaker"},
+      "ios": {"minimumBuild": 1,"availableBuild": 1,"available": false,"expiresAt": "2027-02-24T00:00:00Z","url": "https://apps.apple.com/app/id6837238712"}
+    }
+  }
+}

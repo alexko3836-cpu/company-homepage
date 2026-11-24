@@ -3,3 +3,9 @@
   ! Cache-Control
   Access-Control-Allow-Origin: *
   Cache-Control: no-store
+
+/games/fortress-breaker/update-policy.json
+  ! Access-Control-Allow-Origin
+  ! Cache-Control
+  Access-Control-Allow-Origin: *
+  Cache-Control: no-store
